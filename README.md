@@ -1,7 +1,7 @@
 # PI-II-TIME-N2
 Projeto Integrador II - PUC Campinas
 
-Leonardo Setti
+Leonardo Setti Garcia Peres
 
 Vittor Maia Hagge
 
