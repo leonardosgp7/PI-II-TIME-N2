@@ -19,6 +19,6 @@ Engenharia de Software
 2º semestre - 2026
 
 
-Professor Luã Marcelo Muriana
+Professor 
 
 
