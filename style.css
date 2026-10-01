@@ -1,0 +1,380 @@
+/* =========================================
+   Cores usadas na página (variáveis)
+   ========================================= */
+:root {
+    --azul-escuro: #0f2a4a;
+    --azul: #1677ff;
+    --texto: #1f2937;
+    --texto-suave: #4b5563;
+    --borda: #dfe4ec;
+    --fundo: #f3f6fa;
+}
+
+/* =========================================
+   Página toda
+   ========================================= */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--fundo);
+    color: var(--texto);
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+}
+
+/* =========================================
+   Barra do topo
+   PAI: .topo -> filhos: lado esquerdo e usuário
+   ========================================= */
+.topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--azul-escuro);
+    padding: 0 80px;
+    height: 48px;
+}
+
+.topo-esquerda {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+    height: 100%;
+}
+
+.marca {
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* PAI: .menu -> filhos: os 3 links */
+.menu {
+    display: flex;
+    gap: 24px;
+    height: 100%;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    color: #c9d4e3;
+    font-size: 15px;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+}
+
+.menu a:hover {
+    color: white;
+}
+
+.menu a.ativo {
+    color: white;
+    font-weight: 700;
+    border-bottom-color: #3b82f6;
+}
+
+/* PAI: .usuario -> filhos: nome/cargo e botão Sair */
+.usuario {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.usuario-dados {
+    text-align: right;
+}
+
+.usuario-nome {
+    display: block;
+    color: #c9d4e3;
+    font-size: 11px;
+}
+
+.usuario-cargo {
+    display: block;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.botao-sair {
+    background-color: transparent;
+    color: white;
+    border: 1px solid #8fa3bd;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* =========================================
+   Conteúdo central
+   ========================================= */
+.conteudo {
+    max-width: 1600px;
+    margin: auto;
+    padding: 30px 80px 40px 80px;
+}
+
+/* PAI: título à esquerda, botão à direita */
+.pagina-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.pagina-cabecalho h1 {
+    margin: 0;
+    color: var(--azul-escuro);
+    font-size: 30px;
+}
+
+.contador {
+    margin: 4px 0 0 0;
+    color: var(--texto-suave);
+    font-size: 16px;
+}
+
+.botao-nova {
+    background-color: var(--azul);
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+}
+
+.botao-nova:hover {
+    background-color: #0958d9;
+}
+
+/* =========================================
+   Filtros
+   ========================================= */
+.filtros {
+    background-color: white;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* PAI: cada linha deixa os campos lado a lado */
+.filtros-linha {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.filtros-linha + .filtros-linha {
+    margin-top: 22px;
+}
+
+/* FILHOS: cada campo divide o espaço */
+.campo {
+    flex: 1;
+    min-width: 180px;
+}
+
+.campo-largo {
+    flex: 1.3;
+}
+
+.campo-ordenar {
+    flex: 1.4;
+}
+
+.campo label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.campo input,
+.campo select {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #ccd4df;
+    border-radius: 6px;
+    background-color: white;
+    color: var(--texto);
+    font: inherit;
+    font-size: 15px;
+}
+
+/* ícone de lupa dentro do campo de busca */
+.busca {
+    position: relative;
+}
+
+.busca input {
+    padding-right: 36px;
+}
+
+.busca-icone {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    color: var(--texto-suave);
+}
+
+/* checkbox "Somente minhas demandas" */
+.campo-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.campo-check input {
+    width: 16px;
+    height: 16px;
+}
+
+.campo-check label {
+    color: var(--texto-suave);
+    font-size: 13px;
+}
+
+.botao-limpar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 14px;
+    background-color: #f4f6f9;
+    border: 1px solid #ccd4df;
+    border-radius: 6px;
+    color: var(--texto);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.botao-limpar:hover {
+    background-color: #e9edf2;
+}
+
+/* =========================================
+   Tabela
+   ========================================= */
+.tabela-caixa {
+    background-color: white;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.tabela {
+    width: 100%;
+    min-width: 1100px;
+    border-collapse: collapse;
+}
+
+.tabela th,
+.tabela td {
+    padding: 13px 20px;
+    border-bottom: 1px solid #edf0f4;
+    text-align: left;
+    font-size: 14px;
+}
+
+.tabela thead th {
+    color: var(--texto);
+    font-weight: 700;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.tabela tbody td {
+    color: var(--texto-suave);
+}
+
+.tabela tbody th {
+    color: var(--texto);
+    font-weight: 700;
+}
+
+.tabela tbody tr:last-child th,
+.tabela tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+/* =========================================
+   Etiquetas coloridas (badges)
+   ========================================= */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.verde    { background-color: #d9f5e6; color: #11804e; }
+.vermelho { background-color: #fde2e2; color: #d92d20; }
+.azul     { background-color: #dcebff; color: #1d5fd1; }
+.roxo     { background-color: #efe5fd; color: #7a3fd0; }
+.cinza    { background-color: #e8ebf0; color: #4b5563; }
+.amarelo  { background-color: #fdf0c4; color: #a15c07; }
+.laranja  { background-color: #ffe6cc; color: #c4560c; }
+.critica  { background-color: #b42318; color: white; }
+
+/* =========================================
+   Acessibilidade
+   ========================================= */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+.tabela-caixa:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 2px;
+}
+
+/* texto que só o leitor de tela lê */
+.escondido {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+/* =========================================
+   Telas menores
+   ========================================= */
+@media (max-width: 900px) {
+    .topo {
+        padding: 0 16px;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .conteudo {
+        padding: 20px 16px;
+    }
+
+    .pagina-cabecalho {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+}
