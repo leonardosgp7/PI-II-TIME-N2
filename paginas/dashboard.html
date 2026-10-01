@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - Demandas</title>
+<link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-conteudo">
+      <span class="navbar-marca">Demandas PI-II</span>
+      <div class="navbar-links">
+        <a class="navbar-link navbar-link-ativo" href="#">Dashboard</a>
+        <a class="navbar-link" href="#">Demandas</a>
+      </div>
+      <div class="navbar-usuario">
+        <span class="navbar-usuario-info">
+          Nome do usuario
+          <strong>Perfil</strong>
+        </span>
+        <button class="botao botao-contorno botao-pequeno">Sair</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pagina">
+
+    <div class="cabecalho">
+      <div>
+        <h1>Dashboard</h1>
+        <p id="subtitulo">Total de 10 demanda(s) visiveis para o seu perfil.</p>
+      </div>
+      <a href="#" class="botao botao-primario">Ver todas as demandas</a>
+    </div>
+
+    <div id="mensagem" class="area-mensagem"></div>
+
+    <section class="secao">
+      <h2 class="secao-titulo">Demandas por status</h2>
+      <div class="grade-indicadores" id="indicadoresStatus">
+
+        <div class="cartao cartao-indicador">
+          <div class="valor">10</div>
+          <div class="rotulo">Total de demandas</div>
+        </div>
+
+        <div class="cartao cartao-indicador indicador-ABERTA">
+          <div class="valor">5</div>
+          <div class="rotulo">Abertas</div>
+        </div>
+
+        <div class="cartao cartao-indicador indicador-EM_ANDAMENTO">
+          <div class="valor">1</div>
+          <div class="rotulo">Em andamento</div>
+        </div>
+
+        <div class="cartao cartao-indicador indicador-EM_REVISAO">
+          <div class="valor">1</div>
+          <div class="rotulo">Em revisao</div>
+        </div>
+
+        <div class="cartao cartao-indicador indicador-CONCLUIDA">
+          <div class="valor">2</div>
+          <div class="rotulo">Concluidas</div>
+        </div>
+
+        <div class="cartao cartao-indicador indicador-CANCELADA">
+          <div class="valor">1</div>
+          <div class="rotulo">Canceladas</div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="grade-duas-colunas secao">
+
+      <div class="cartao">
+        <h2 class="secao-titulo">Demandas por prioridade</h2>
+        <div id="graficoPrioridade">
+
+          <div class="linha-barra">
+            <div class="linha-barra-topo">
+              <span class="etiqueta prioridade-CRITICA">Critica</span>
+              <span class="linha-barra-contagem">3 (30%)</span>
+            </div>
+            <div class="trilha-progresso">
+              <div class="preenchimento-progresso" style="width: 30%"></div>
+            </div>
+          </div>
+
+          <div class="linha-barra">
+            <div class="linha-barra-topo">
+              <span class="etiqueta prioridade-ALTA">Alta</span>
+              <span class="linha-barra-contagem">2 (20%)</span>
+            </div>
+            <div class="trilha-progresso">
+              <div class="preenchimento-progresso" style="width: 20%"></div>
+            </div>
+          </div>
+
+          <div class="linha-barra">
+            <div class="linha-barra-topo">
+              <span class="etiqueta prioridade-MEDIA">Media</span>
+              <span class="linha-barra-contagem">1 (10%)</span>
+            </div>
+            <div class="trilha-progresso">
+              <div class="preenchimento-progresso" style="width: 10%"></div>
+            </div>
+          </div>
+
+          <div class="linha-barra">
+            <div class="linha-barra-topo">
+              <span class="etiqueta prioridade-BAIXA">Baixa</span>
+              <span class="linha-barra-contagem">4 (40%)</span>
+            </div>
+            <div class="trilha-progresso">
+              <div class="preenchimento-progresso" style="width: 40%"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="cartao">
+        <h2 class="secao-titulo">Demandas por tipo</h2>
+        <div id="graficoTipo">
+
+          <div class="linha-barra">
+            <div class="linha-barra-topo">
+              <span class="etiqueta tipo-TAREFA">Tarefa</span>
+              <span class="linha-barra-contagem">4 (40%)</span>
+            </div>
+            <div class="trilha-progresso">
+              <div class="preenchimento-progresso" style="width: 40%"></div>
+            </div>
+          </div>
+
+          <div class="linha-barra">
+            <div class="linha-barra-topo">
+              <span class="etiqueta tipo-DEFEITO">Defeito</span>
+              <span class="linha-barra-contagem">2 (20%)</span>
+            </div>
+            <div class="trilha-progresso">
+              <div class="preenchimento-progresso" style="width: 20%"></div>
+            </div>
+          </div>
+
+          <div class="linha-barra">
+            <div class="linha-barra-topo">
+              <span class="etiqueta tipo-MELHORIA">Melhoria</span>
+              <span class="linha-barra-contagem">2 (20%)</span>
+            </div>
+            <div class="trilha-progresso">
+              <div class="preenchimento-progresso" style="width: 20%"></div>
+            </div>
+          </div>
+
+          <div class="linha-barra">
+            <div class="linha-barra-topo">
+              <span class="etiqueta tipo-DOCUMENTACAO">Documentacao</span>
+              <span class="linha-barra-contagem">2 (20%)</span>
+            </div>
+            <div class="trilha-progresso">
+              <div class="preenchimento-progresso" style="width: 20%"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="grade-duas-colunas">
+
+      <div class="cartao">
+        <h2 class="secao-titulo">Demandas criticas em aberto</h2>
+        <div id="listaCriticas">
+          <ul class="lista-demandas">
+
+            <li class="item-demanda">
+              <div>
+                <a class="item-demanda-titulo" href="#">#6 Crash ao abrir o app sem internet</a>
+                <div class="item-demanda-info">Aplicativo Mobile - Sem responsavel</div>
+              </div>
+              <div class="item-demanda-lado">
+                <span class="etiqueta status-ABERTA">Aberta</span>
+                <div class="item-demanda-data prazo-vencido">24/08/2026</div>
+              </div>
+            </li>
+
+            <li class="item-demanda">
+              <div>
+                <a class="item-demanda-titulo" href="#">#1 Tela de login nao valida senha vazia</a>
+                <div class="item-demanda-info">Portal Academico - Diego Almeida</div>
+              </div>
+              <div class="item-demanda-lado">
+                <span class="etiqueta status-EM_ANDAMENTO">Em andamento</span>
+                <div class="item-demanda-data prazo-proximo">02/10/2026</div>
+              </div>
+            </li>
+
+            <li class="item-demanda">
+              <div>
+                <a class="item-demanda-titulo" href="#">#2 Cadastro de disciplinas</a>
+                <div class="item-demanda-info">Portal Academico - Diego Almeida</div>
+              </div>
+              <div class="item-demanda-lado">
+                <span class="etiqueta status-ABERTA">Aberta</span>
+                <div class="item-demanda-data">15/10/2026</div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+      <div class="cartao">
+        <h2 class="secao-titulo">Proximas do prazo (7 dias) ou atrasadas</h2>
+        <div id="listaPrazo">
+          <ul class="lista-demandas">
+
+            <li class="item-demanda">
+              <div>
+                <a class="item-demanda-titulo" href="#">#6 Crash ao abrir o app sem internet</a>
+                <div class="item-demanda-info">Aplicativo Mobile - Sem responsavel</div>
+              </div>
+              <div class="item-demanda-lado">
+                <span class="etiqueta status-ABERTA">Aberta</span>
+                <div class="item-demanda-data prazo-vencido">24/08/2026</div>
+              </div>
+            </li>
+
+            <li class="item-demanda">
+              <div>
+                <a class="item-demanda-titulo" href="#">#1 Tela de login nao valida senha vazia</a>
+                <div class="item-demanda-info">Portal Academico - Diego Almeida</div>
+              </div>
+              <div class="item-demanda-lado">
+                <span class="etiqueta status-EM_ANDAMENTO">Em andamento</span>
+                <div class="item-demanda-data prazo-proximo">02/10/2026</div>
+              </div>
+            </li>
+
+            <li class="item-demanda">
+              <div>
+                <a class="item-demanda-titulo" href="#">#3 Exportar historico em PDF</a>
+                <div class="item-demanda-info">Portal Academico - Diego Almeida</div>
+              </div>
+              <div class="item-demanda-lado">
+                <span class="etiqueta status-EM_REVISAO">Em revisao</span>
+                <div class="item-demanda-data prazo-proximo">03/10/2026</div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
