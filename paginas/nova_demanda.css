@@ -1,0 +1,203 @@
+body {
+    margin: 0px;
+    font-family: sans-serif;
+    background-color: #F4F8FC;
+}
+
+#cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1d3a6e;
+    height: 60px;
+    flex-wrap: nowrap;
+    padding: 0px 50px;
+}
+
+.esquerda {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.esquerda h2 {
+    color: white;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+.esquerda p {
+    color: #c3cde0;
+    font-size: 13px;
+}
+
+.direita {
+    display: flex;
+    align-items: center;
+}
+
+.usuario {
+    display: block;
+    margin: 0px;
+    padding-right: 10px;
+}
+
+.usuario p {
+    margin: 0px;
+    font-size: 13px;
+}
+
+.botao {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.direita p {
+    color: #b8c3d8;
+}
+
+.ativo p {
+    color: white;
+    font-weight: 600;
+}
+
+.subtitulo  {
+    display: flex;
+    padding-top: 5px;
+    padding: 0px 50px;
+    gap: 10px;
+}
+
+.Dashboard p {
+    color: #3b7ddd;
+}
+
+.Demandas p {
+    color: #3b7ddd;
+}
+
+.Novademanda {
+    color: #8a96a8;
+}
+
+.novademanda h1 {
+    padding: 0px 50px;
+    margin-bottom: 10px;
+    color: #1b3566;
+    font-weight: 700;
+}
+
+.subnova {
+    padding: 0px 50px;
+}
+
+.subnova p {
+    color: #6b7890;
+}
+
+form {
+    padding: 20px;
+    margin: 30px;
+    border-radius: 6px;
+    color: #1F355D;
+    font-weight: 600;
+    background-color: white;
+}
+
+form label {
+    display: block;
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+
+input::placeholder {
+    color: #9CA3AF;
+    padding: 0px 5px;
+    padding-top: 5px;
+}
+
+textarea::placeholder {
+    color: #9CA3AF;
+    opacity: 1;
+    padding: 0px 5px;
+    padding-top: 5px;
+}
+
+input[type="date"] {
+  color: #9CA3AF;
+}
+
+.linha {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 50px;
+}
+
+.campo {
+    width: 100%;
+    padding-right: 8px;
+}
+
+.campo p {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #94A3B8;
+    font-weight: 400;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  display: block;
+  padding: 12px 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  color: #1E3A5F;
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.botoes {
+    display: flex;
+    justify-content: end;
+    padding-top: 5px;
+    gap: 15px;
+}
+
+.botaocancelar {
+    background-color: white;
+    color: #1b3566;
+    border: 1px solid #c9d2e0;
+}
+
+.botaocadastro {
+    background-color: #3b7ddd;
+    color: white;
+    border: none;
+}
+
+button {
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: inherit;       
+    cursor: pointer;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #E2E8F0;
+}
+
+.subtext {
+    display: flex;
+    justify-content: end;
+    font-size: 14px;
+    font-weight: 400;
+    color: #94A3B8;
+}

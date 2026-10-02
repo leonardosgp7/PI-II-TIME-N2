@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<head>
+    <link href="nova_demanda.css" rel="stylesheet">
+    <title>Nova Demanda</title>
+</head>
+<body>
+    <div id="cabecalho">
+        <div class="esquerda">
+            <h2>Demandas PI-II</h2>
+            <p>Dashboard</p>
+            <p>Demandas</p>
+            <p>Administração</p>
+        </div>
+
+        <div class="direita">
+                <div class="usuario">
+                    <p>Ana Souza</p>
+                    <div class="ativo">
+                    <p>Administrador</p>
+                    </div>
+                </div>
+               <div class="botao">
+                    <button>sair</button>
+                </div>
+        </div>
+    </div>
+
+    <div class="subtitulo">
+        <div class="Dashboard">
+            <p>Dashboard</p>
+        </div>
+        <div class="barra">
+            <p>/</p>
+        </div>
+        <div class="Demandas">
+            <p>Demandas</p>
+        </div>
+        <div class="barra">
+            <p>/</p>
+        </div>
+        <div class="Novademanda">
+            <p>Nova demanda</p>
+        </div>
+    </div>
+
+    <div class="novademanda">
+    <h1>Nova demanda</h1>
+    </div>
+    <div class="subnova">
+        <p>Toda demanda é criada com o status Aberta e pode ser editada depois pela tela de detalhes</p>
+    </div>
+    <form>
+        <div class="campo">
+        <label for="titulo">Título<sup>*</sup></label>
+        <input id="titulo" type="text" name="titulo" placeholder="Digite o título de demanda">
+        </div>
+
+        <div class="campo">
+        <label for="descricao">Descrição</label>
+        <textarea id="descricao" rows="5" name="descricao" placeholder="Descreva detalhadamente a demanda..."></textarea>
+        </div>
+
+        <div class="linha">
+
+            <div class="campo">
+                <label for="projeto">Projeto<sup>*</sup></label>
+                <select id="projeto">
+                    <option>Selecione o projeto</option>
+                </select>
+                <p>O projeto não pode ser alterado após a criação</p>
+            </div>
+
+            <div class="campo">
+                <label for="responsavel">Responsável<sup></sup></label>
+                <select id="reponsavel">
+                    <option>Sem responsável</option>
+                </select>
+               <p>Pode ser atribuído posteriormente</p>
+            </div>
+        </div>
+
+        <div class="linha">
+
+            <div class="campo">
+                <label for="tipo">Tipo<sup>*</sup></label>
+                <select id="tipo">
+                    <option>Tarefa</option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <label for="prioridade">Prioridade<sup>*</sup></label>
+                <select id="prioridade">
+                    <option>Média</option>
+                </select>
+            </div>
+
+            <div class="campo">
+            <label for="data">Prazo de finalização<sup></sup></label>
+            <input id="data" type="date" name="data">
+            </div>
+        </div>
+
+        <div class="subtext">
+            <p>Feriados nacionais não serão aceitos.</p>
+        </div>
+
+            <hr>
+            <div class="botoes">
+                <button type="reset" class="botaocancelar">Cancelar</button>
+                <button type="submit" class="botaocadastro">Cadastrar demanda</button>
+            </div>
+    </form>
+</body>
