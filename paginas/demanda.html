@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info. Demanda - Demandas</title>
+    <link rel="stylesheet" href="demanda.css">
+</head>
+<body>
+    
+<header class="topbar">
+    <div class="brand">Demandas PI-II</div>
+
+    <nav>
+        <a href="#">Dashboard</a>
+        <a href="#" class="ativo">Demandas</a>
+        <a href="#">Administração</a>
+    </nav>
+
+    <div class="usuario">
+        <div class="usuario-info">
+            <p>Ana Souza</p>
+            <strong>Administrador</strong>
+        </div>
+        <button type="button">Sair</button>
+    </div>
+</header>
+
+<main>
+
+    <nav class="breadcrumb">
+        <a href="#">Dashboard</a> /
+        <a href="#">Demandas</a> /
+        #11
+    </nav>
+
+    <section class="card">
+        <small class="numero">Demanda #11</small>
+        <h1 class="titulo">teste</h1>
+
+        <div class="tags">
+            <span class="tag status">Concluída</span>
+            <span class="tag prioridade">Média</span>
+            <span class="tag tipo">Melhoria</span>
+        </div>
+
+        <p class="aviso">Nenhuma ação disponível para o seu perfil nesta demanda.</p>
+
+        <div class="info-grid">
+            <div class="info-col">
+                <div class="info-item">
+                    <span class="rotulo">Projeto</span>
+                    <span class="valor">Aplicativo Mobile</span>
+                </div>
+                <div class="info-item">
+                    <span class="rotulo">Data de criação</span>
+                    <span class="valor">10/09/2026 22:50</span>
+                </div>
+            </div>
+
+            <div class="info-col">
+                <div class="info-item">
+                    <span class="rotulo">Responsável</span>
+                    <span class="valor">Bruno Carvalho</span>
+                </div>
+                <div class="info-item">
+                    <span class="rotulo">Última atualização</span>
+                    <span class="valor">10/09/2026 22:51</span>
+                </div>
+            </div>
+
+            <div class="info-col">
+                <div class="info-item">
+                    <span class="rotulo">Criada por</span>
+                    <span class="valor">Ana Souza</span>
+                </div>
+                <div class="info-item">
+                    <span class="rotulo">Prazo de finalização</span>
+                    <span class="valor">31/08/2026</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="descricao">
+            <span class="rotulo">DESCRIÇÃO</span>
+            <p>teste</p>
+        </div>
+    </section>
+
+    <div class="duas-colunas">
+
+        <section class="card">
+            <h2 class="titulo-secao comentarios-titulo">Comentários (1)</h2>
+
+            <label for="novo-comentario">Novo comentário</label>
+            <textarea id="novo-comentario" placeholder="Dúvidas, observações ou atualizações sobre a demanda"></textarea>
+            <button type="button" class="btn-comentar">Comentar</button>
+
+            <div class="comentario">
+                <div class="avatar">AS</div>
+                <div class="comentario-corpo">
+                    <div class="comentario-topo">
+                        <strong>Ana Souza</strong>
+                        <time>10/09/2026 22:50</time>
+                    </div>
+                    <p>teste</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2 class="titulo-secao">Histórico de alterações</h2>
+
+            <ul class="timeline">
+                <li>
+                    Ana Souza alterou o status da demanda de <strong>Em revisão</strong> para <strong>Concluída</strong>.
+                    <time>10/09/2026 22:51</time>
+                </li>
+                <li>
+                    Ana Souza alterou o status da demanda de <strong>Em andamento</strong> para <strong>Em revisão</strong>.
+                    <time>10/09/2026 22:51</time>
+                </li>
+                <li>
+                    Ana Souza alterou o status da demanda de Aberta para <strong>Em andamento</strong>.
+                    <time>10/09/2026 22:51</time>
+                </li>
+                <li>
+                    Ana Souza criou a demanda com o status <strong>Aberta</strong>.
+                    <time>10/09/2026 22:50</time>
+                </li>
+            </ul>
+        </section>
+
+    </div>
+
+</main>
+</body>
+</html>
