@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Demandas - Demandas</title>
+    <link rel="stylesheet" href="demandas.css">
+</head>
+<body>
+
+    <!-- ===== Barra do topo ===== -->
+    <header class="topo">
+        <div class="topo-esquerda">
+            <a class="marca" href="#">Demandas PI-II</a>
+
+            <nav class="menu" aria-label="Navegação principal">
+                <a href="/paginas/dashboard.html">Dashboard</a>
+                <a href="/paginas/demandas.html" class="ativo" aria-current="page">Demandas</a>
+                <a href="#">Administração</a>
+            </nav>
+        </div>
+
+        <div class="usuario">
+            <div class="usuario-dados">
+                <span class="usuario-nome">João Antero</span>
+                <span class="usuario-cargo">Administrador</span>
+            </div>
+            <button class="botao-sair" type="button">Sair</button>
+        </div>
+    </header>
+
+
+    <main class="conteudo">
+
+        <!-- ===== Título da página ===== -->
+        <div class="pagina-cabecalho">
+            <div>
+                <h1>Demandas</h1>
+                <p class="contador">10 demandas encontradas.</p>
+            </div>
+
+            <a href="#" class="botao-nova">+ Nova demanda</a>
+        </div>
+
+
+        <!-- ===== Filtros ===== -->
+        <form class="filtros" action="#" method="get">
+
+            <div class="filtros-linha">
+                <div class="campo campo-largo">
+                    <label for="buscar">Buscar</label>
+                    <div class="busca">
+                        <input type="search" id="buscar" name="q" placeholder="Título ou descrição">
+                        <svg class="busca-icone" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label for="status">Status</label>
+                    <select id="status" name="status">
+                        <option>Todos</option>
+                        <option>Aberta</option>
+                        <option>Em andamento</option>
+                        <option>Em revisão</option>
+                        <option>Concluída</option>
+                        <option>Cancelada</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="prioridade">Prioridade</label>
+                    <select id="prioridade" name="prioridade">
+                        <option>Todas</option>
+                        <option>Baixa</option>
+                        <option>Média</option>
+                        <option>Alta</option>
+                        <option>Crítica</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="tipo">Tipo</label>
+                    <select id="tipo" name="tipo">
+                        <option>Todos</option>
+                        <option>Tarefa</option>
+                        <option>Melhoria</option>
+                        <option>Defeito</option>
+                        <option>Documentacao</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="projeto">Projeto</label>
+                    <select id="projeto" name="projeto">
+                        <option>Todos</option>
+                        <option>Aplicativo Mobile</option>
+                        <option>Integração Financeira</option>
+                        <option>Portal Academico</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="filtros-linha">
+                <div class="campo campo-largo">
+                    <label for="responsavel">Responsável</label>
+                    <select id="responsavel" name="responsavel">
+                        <option>Todos</option>
+                        <option>Diego Almeida</option>
+                        <option>Elisa Nunes</option>
+                        <option>Felipe Tavares</option>
+                    </select>
+                </div>
+
+                <div class="campo campo-ordenar">
+                    <label for="ordenar">Ordenar por</label>
+                    <select id="ordenar" name="ordenar">
+                        <option>Data de criacao</option>
+                        <option>Prazo</option>
+                        <option>Prioridade</option>
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="direcao">Direção</label>
+                    <select id="direcao" name="direcao">
+                        <option>Decrescente</option>
+                        <option>Crescente</option>
+                    </select>
+                </div>
+
+                <div class="campo-check">
+                    <input type="checkbox" id="minhas" name="minhas">
+                    <label for="minhas">Somente minhas demandas</label>
+                </div>
+
+                <button class="botao-limpar" type="reset"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="3 4 21 4 14 12.5 14 19 10 21 10 12.5 3 4"></polygon></svg> Limpar filtros</button>
+            </div>
+
+        </form>
+
+
+        <!-- ===== Tabela ===== -->
+        <div class="tabela-caixa" tabindex="0" aria-label="Tabela de demandas">
+            <table class="tabela">
+                <caption class="escondido">Lista de demandas</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Prioridade</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Projeto</th>
+                        <th scope="col">Responsavel</th>
+                        <th scope="col">Criada em</th>
+                        <th scope="col">Prazo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#1</td>
+                        <th scope="row">Tela de login nao valida senha vazia</th>
+                        <td><span class="badge vermelho">Defeito</span></td>
+                        <td><span class="badge critica">Crítica</span></td>
+                        <td><span class="badge azul">Em andamento</span></td>
+                        <td>Portal Academico</td>
+                        <td>Diego Almeida</td>
+                        <td>22/08/2026</td>
+                        <td>25/08/2026</td>
+                    </tr>
+                    <tr>
+                        <td>#2</td>
+                        <th scope="row">Cadastro de disciplinas</th>
+                        <td><span class="badge azul">Tarefa</span></td>
+                        <td><span class="badge vermelho">Alta</span></td>
+                        <td><span class="badge cinza">Aberta</span></td>
+                        <td>Portal Academico</td>
+                        <td>Elisa Nunes</td>
+                        <td>22/08/2026</td>
+                        <td>03/09/2026</td>
+                    </tr>
+                    <tr>
+                        <td>#3</td>
+                        <th scope="row">Exportar historico em PDF</th>
+                        <td><span class="badge verde">Melhoria</span></td>
+                        <td><span class="badge amarelo">Média</span></td>
+                        <td><span class="badge laranja">Em revisão</span></td>
+                        <td>Portal Academico</td>
+                        <td>Diego Almeida</td>
+                        <td>22/08/2026</td>
+                        <td>27/08/2026</td>
+                    </tr>
+                    <tr>
+                        <td>#4</td>
+                        <th scope="row">Documentar endpoints da API</th>
+                        <td><span class="badge roxo">Documentacao</span></td>
+                        <td><span class="badge cinza">Baixa</span></td>
+                        <td><span class="badge cinza">Aberta</span></td>
+                        <td>Portal Academico</td>
+                        <td>Sem Resp.</td>
+                        <td>22/08/2026</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>#5</td>
+                        <th scope="row">Push notification de notas</th>
+                        <td><span class="badge verde">Melhoria</span></td>
+                        <td><span class="badge vermelho">Alta</span></td>
+                        <td><span class="badge cinza">Aberta</span></td>
+                        <td>Aplicativo Mobile</td>
+                        <td>Felipe Tavares</td>
+                        <td>22/08/2026</td>
+                        <td>11/09/2026</td>
+                    </tr>
+                    <tr>
+                        <td>#6</td>
+                        <th scope="row">Crash ao abrir o app sem internet</th>
+                        <td><span class="badge vermelho">Defeito</span></td>
+                        <td><span class="badge critica">Crítica</span></td>
+                        <td><span class="badge cinza">Aberta</span></td>
+                        <td>Aplicativo Mobile</td>
+                        <td>Sem Resp.</td>
+                        <td>22/08/2026</td>
+                        <td>24/08/2026</td>
+                    </tr>
+                    <tr>
+                        <td>#7</td>
+                        <th scope="row">Splash screen da nova identidade</th>
+                        <td><span class="badge azul">Tarefa</span></td>
+                        <td><span class="badge cinza">Baixa</span></td>
+                        <td><span class="badge verde">Concluída</span></td>
+                        <td>Aplicativo Mobile</td>
+                        <td>Felipe Tavares</td>
+                        <td>22/08/2026</td>
+                        <td>17/08/2026</td>
+                    </tr>
+                    <tr>
+                        <td>#8</td>
+                        <th scope="row">Conciliação automática de boletos</th>
+                        <td><span class="badge azul">Tarefa</span></td>
+                        <td><span class="badge vermelho">Alta</span></td>
+                        <td><span class="badge azul">Em andamento</span></td>
+                        <td>Integração Financeira</td>
+                        <td>Elisa Nunes</td>
+                        <td>22/08/2026</td>
+                        <td>30/08/2026</td>
+                    </tr>
+                    <tr>
+                        <td>#9</td>
+                        <th scope="row">Timeout na consulta de saldo</th>
+                        <td><span class="badge vermelho">Defeito</span></td>
+                        <td><span class="badge vermelho">Alta</span></td>
+                        <td><span class="badge vermelho">Cancelada</span></td>
+                        <td>Integração Financeira</td>
+                        <td>Sem Resp.</td>
+                        <td>22/08/2026</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>#10</td>
+                        <th scope="row">Manual de implantação</th>
+                        <td><span class="badge roxo">Documentacao</span></td>
+                        <td><span class="badge amarelo">Média</span></td>
+                        <td><span class="badge cinza">Aberta</span></td>
+                        <td>Integração Financeira</td>
+                        <td>Elisa Nunes</td>
+                        <td>22/08/2026</td>
+                        <td>06/09/2026</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+</body>
+</html>
