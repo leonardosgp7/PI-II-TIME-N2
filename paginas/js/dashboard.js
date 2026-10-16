@@ -1,7 +1,3 @@
-/* =========================================
-   dashboard.js - busca as demandas na API e monta o dashboard.
-   API usada: GET /demandas -> lista de demandas visíveis para o usuário logado
-   ========================================= */
 
 const DIAS_ALERTA_PRAZO = 7;
 
@@ -24,8 +20,6 @@ async function carregarDashboard() {
   }
 }
 
-// Conta quantas demandas existem para cada valor de um campo.
-// Ex.: contarPor(demandas, 'status') -> { ABERTA: 5, EM_ANDAMENTO: 1, ... }
 function contarPor(demandas, campo) {
   const contagem = {};
   for (const codigo in ROTULOS[campo]) {
@@ -43,8 +37,6 @@ function mostrarSubtitulo(demandas) {
   document.getElementById('subtitulo').textContent =
     `Total de ${demandas.length} demanda(s) visíveis para o seu perfil.`;
 }
-
-/* ---------- Cartões por status ---------- */
 
 function criarCartaoIndicador(valor, rotulo, classeExtra = '') {
   return `

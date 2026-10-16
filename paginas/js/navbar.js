@@ -1,10 +1,3 @@
-/* =========================================
-   navbar.js - navbar única do sistema.
-   Em cada página basta colocar no <body>:
-     <div id="navbar" data-ativo="dashboard"></div>
-   data-ativo: "dashboard" ou "demandas".
-   Requer navbar.css, api.js e utils.js.
-   ========================================= */
 
 const LINKS_NAVBAR = [
   { id: 'dashboard', texto: 'Dashboard', href: 'dashboard.html' },
@@ -17,7 +10,6 @@ function criarNavbar(ativo, usuario) {
     return `<a class="barra-topo-link${ehAtivo ? ' barra-topo-link-ativo' : ''}" href="${link.href}"${ehAtivo ? ' aria-current="page"' : ''}>${link.texto}</a>`;
   }).join('');
 
-  // Administração só aparece para administradores
   const admin = usuario.perfil === 'ADMINISTRADOR'
     ? '<a class="barra-topo-link" href="#">Administração</a>'
     : '';
