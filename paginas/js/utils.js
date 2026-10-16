@@ -19,7 +19,9 @@ const ROTULOS = {
     DOCUMENTACAO: 'Documentação'
   },
   perfil: {
-    ADMINISTRADOR: 'Administrador'
+    ADMINISTRADOR: 'Administrador',
+    LIDER: 'Líder de Projeto',
+    MEMBRO: 'Membro da Equipe'
   }
 };
 

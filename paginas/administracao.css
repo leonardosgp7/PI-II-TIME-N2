@@ -1,0 +1,41 @@
+.secao-titulo {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--bs-secondary-color);
+  margin-bottom: 0.75rem;
+}
+
+.nav-tabs .nav-link {
+  color: var(--bs-secondary-color);
+}
+.nav-tabs .nav-link.active {
+  color: #1b3a6b;
+  font-weight: 600;
+}
+
+.perfil-ADMINISTRADOR { background-color: #ede7f6; color: #4527a0; }
+.perfil-LIDER         { background-color: #cfe2ff; color: #084298; }
+.perfil-MEMBRO        { background-color: #e9ecef; color: #41464b; }
+
+.situacao-ativo   { background-color: #d1e7dd; color: #0f5132; }
+.situacao-inativo { background-color: #f8d7da; color: #842029; }
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #1b3a6b;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.usuario-inativo {
+  opacity: 0.6;
+}

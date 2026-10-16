@@ -4,64 +4,6 @@ body {
     background-color: #F4F8FC;
 }
 
-#cabecalho {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1d3a6e;
-    height: 60px;
-    flex-wrap: nowrap;
-    padding: 0px 50px;
-}
-
-.esquerda {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.esquerda h2 {
-    color: white;
-    font-family: sans-serif;
-    font-size: 20px;
-}
-
-.esquerda p {
-    color: #c3cde0;
-    font-size: 13px;
-}
-
-.direita {
-    display: flex;
-    align-items: center;
-}
-
-.usuario {
-    display: block;
-    margin: 0px;
-    padding-right: 10px;
-}
-
-.usuario p {
-    margin: 0px;
-    font-size: 13px;
-}
-
-.botao {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.direita p {
-    color: #b8c3d8;
-}
-
-.ativo p {
-    color: white;
-    font-weight: 600;
-}
-
 .subtitulo  {
     display: flex;
     padding-top: 5px;
