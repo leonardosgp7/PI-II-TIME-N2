@@ -1,11 +1,3 @@
-/* =========================================
-   administracao.js - usuários e equipes dos projetos (só ADMINISTRADOR).
-   API usada:
-     GET  /usuarios        -> [{ id, nome, email, perfil, ativo, projetos: [idProjeto] }]
-     GET  /projetos        -> [{ id, nome }]
-     POST /usuarios        -> cria usuário (inclui senha)
-     PUT  /usuarios/:id    -> altera usuário (inclui a lista "projetos")
-   ========================================= */
 
 let usuarios = [];
 let projetos = [];
@@ -61,7 +53,6 @@ function etiquetaPerfil(perfil) {
   return `<span class="badge rounded-pill perfil-${perfil}">${ROTULOS.perfil[perfil] || perfil}</span>`;
 }
 
-/* ---------- Aba Usuários ---------- */
 
 function mostrarUsuarios() {
   document.getElementById('contadorUsuarios').textContent = `${usuarios.length} usuário(s) cadastrado(s).`;
@@ -93,7 +84,6 @@ function mostrarUsuarios() {
   }).join('');
 }
 
-/* ---------- Modal de cadastro/edição ---------- */
 
 function abrirModal(idUsuario) {
   const editando = idUsuario !== null;
@@ -162,7 +152,6 @@ function validarUsuario(nome, email, senha, editando) {
   return null;
 }
 
-/* ---------- Aba Equipes ---------- */
 
 function mostrarSelecaoProjeto() {
   const selecao = document.getElementById('selecaoProjeto');
