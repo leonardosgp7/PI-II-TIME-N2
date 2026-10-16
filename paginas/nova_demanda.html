@@ -3,6 +3,7 @@
     <link href="nova_demanda.css" rel="stylesheet">
     <title>Nova Demandas - Demandas</title>
     <meta name="viewport" content="width=device-width" initial-scale="1">
+    <script src="nova_demanda.js" defer></script>
 </head>
 <body>
     <div id="cabecalho">
@@ -50,32 +51,42 @@
     <div class="subnova">
         <p>Toda demanda é criada com o status Aberta e pode ser editada depois pela tela de detalhes</p>
     </div>
-    <form>
+    <form id="formulario">
         <div class="campo">
         <label for="titulo">Título<sup>*</sup></label>
         <input id="titulo" type="text" name="titulo" placeholder="Digite o título de demanda">
+        <div id="erroTitulo" class="invalid-feedback"></div>
         </div>
 
         <div class="campo">
         <label for="descricao">Descrição</label>
         <textarea id="descricao" rows="5" name="descricao" placeholder="Descreva detalhadamente a demanda..."></textarea>
+        <div id="erroDescricao" class="invalid-feedback"></div>
         </div>
 
         <div class="linha">
 
             <div class="campo">
                 <label for="projeto">Projeto<sup>*</sup></label>
-                <select id="projeto">
-                    <option>Selecione o projeto</option>
-                </select>
+                    <select id="projeto">
+                        <option value="">Selecione o projeto</option>
+                        <option value="projeto">Empresarial</option>
+                        <option value="projeto">Base</option>
+                        <option value="projeto">Colegial</option>
+                    </select>
+                <div id="erroProjeto" class="invalid-feedback"></div>
                 <p>O projeto não pode ser alterado após a criação</p>
             </div>
 
             <div class="campo">
                 <label for="responsavel">Responsável<sup></sup></label>
-                <select id="reponsavel">
-                    <option>Sem responsável</option>
-                </select>
+                    <select id="responsavel">
+                        <option value="">Selecione um responsável...</option>
+                        <option value="responsavel">Ana</option>
+                        <option value="responsavel">Vittor</option>
+                        <option value="responsavel">Maurício</option>
+                    </select>
+               <div id=erroResponsavel class="invalid-feedback"></div> 
                <p>Pode ser atribuído posteriormente</p>
             </div>
         </div>
@@ -86,10 +97,11 @@
                 <label for="tipo">Tipo<sup>*</sup></label>
                 <select id="tipo">
                     <option value="">Selecione um tipo...</option>
-                    <opition value="tipo">Projeto</opition>
+                    <option value="tipo">Projeto</option>
                     <option value="tipo">Tarefa</option>
                     <option value="tipo">Trabalho</option>
                 </select>
+                <div id="erroTipo" class="invalid-feedback"></div>
             </div>
 
             <div class="campo">
@@ -100,11 +112,13 @@
                     <option value="prioridade">Média</option>
                     <option value="prioridade">Difícil</option>
                 </select>
+                <div id="erroPrioridade" class="invalid-feedback"></div>
             </div>
 
             <div class="campo">
             <label for="data">Prazo de finalização<sup></sup></label>
             <input id="data" type="date" name="data">
+            <div id="erroData" class="invalid-feedback"></div>
             </div>
         </div>
 
