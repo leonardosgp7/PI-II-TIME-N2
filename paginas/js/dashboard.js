@@ -61,8 +61,6 @@ function mostrarIndicadoresStatus(demandas) {
   document.getElementById('indicadoresStatus').innerHTML = html;
 }
 
-/* ---------- Barras por prioridade / tipo ---------- */
-
 function mostrarGraficoBarras(idElemento, demandas, campo) {
   const contagem = contarPor(demandas, campo);
   const total = demandas.length;
@@ -87,9 +85,6 @@ function mostrarGraficoBarras(idElemento, demandas, campo) {
   document.getElementById(idElemento).innerHTML = html;
 }
 
-/* ---------- Listas de demandas ---------- */
-
-// Ordena por prazo (mais próximo primeiro); demandas sem prazo vão para o fim
 function ordenarPorPrazo(demandas) {
   return [...demandas].sort((a, b) => {
     if (!a.prazo) return 1;
