@@ -143,3 +143,16 @@ hr {
     font-weight: 400;
     color: #94A3B8;
 }
+
+.is-invalid {
+    border: 2px solid red;
+}
+
+.invalid-feedback {
+    display: none;
+    color: red;
+}
+
+.is-invalid + .invalid-feedback {
+    display: block;
+}
