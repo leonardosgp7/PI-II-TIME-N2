@@ -4,30 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista Demandas - Demandas</title>
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="demandas.css">
+    <script src="js/dados-exemplo.js" defer></script>
+    <script src="js/api.js" defer></script>
+    <script src="js/utils.js" defer></script>
+    <script src="js/navbar.js" defer></script>
 </head>
 <body>
 
-    <!-- ===== Barra do topo ===== -->
-    <header class="topo">
-        <div class="topo-esquerda">
-            <a class="marca" href="#">Demandas PI-II</a>
-
-            <nav class="menu" aria-label="Navegação principal">
-                <a href="/paginas/dashboard.html">Dashboard</a>
-                <a href="/paginas/demandas.html" class="ativo" aria-current="page">Demandas</a>
-                <a href="#">Administração</a>
-            </nav>
-        </div>
-
-        <div class="usuario">
-            <div class="usuario-dados">
-                <span class="usuario-nome">João Antero</span>
-                <span class="usuario-cargo">Administrador</span>
-            </div>
-            <button class="botao-sair" type="button">Sair</button>
-        </div>
-    </header>
+<div id="navbar" data-ativo="demandas"></div>
 
 
     <main class="conteudo">
