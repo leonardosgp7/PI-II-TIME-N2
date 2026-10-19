@@ -1,0 +1,44 @@
+/* Etiquetas coloridas - mesma paleta usada no dashboard */
+.status-ABERTA       { background-color: #e9ecef; color: #41464b; }
+.status-EM_ANDAMENTO { background-color: #cfe2ff; color: #084298; }
+.status-EM_REVISAO   { background-color: #ffe5d0; color: #8a4b08; }
+.status-CONCLUIDA    { background-color: #d1e7dd; color: #0f5132; }
+.status-CANCELADA    { background-color: #f8d7da; color: #842029; }
+
+.prioridade-CRITICA { background-color: #842029; color: #fff; }
+.prioridade-ALTA    { background-color: #f8d7da; color: #842029; }
+.prioridade-MEDIA   { background-color: #fff3cd; color: #664d03; }
+.prioridade-BAIXA   { background-color: #e2e3e5; color: #41464b; }
+
+.tipo-TAREFA       { background-color: #e7f1ff; color: #084298; }
+.tipo-DEFEITO      { background-color: #ffe2e2; color: #842029; }
+.tipo-MELHORIA     { background-color: #e3f9e5; color: #0f5132; }
+.tipo-DOCUMENTACAO { background-color: #ede7f6; color: #4527a0; }
+
+/* Tabela */
+.tabela-demandas {
+  min-width: 1100px;
+}
+
+.tabela-demandas thead th {
+  white-space: nowrap;
+}
+
+.coluna-id {
+  width: 70px;
+}
+
+.titulo-demanda {
+  color: #1b3a6b;
+}
+.titulo-demanda:hover {
+  text-decoration: underline;
+}
+
+/* Prazo vencido / proximo do vencimento */
+.prazo-vencido  { color: #b42318; font-weight: 600; }
+.prazo-proximo  { color: #8a4b08; font-weight: 600; }
+
+h1 {
+  color: #1b3a6b;
+}

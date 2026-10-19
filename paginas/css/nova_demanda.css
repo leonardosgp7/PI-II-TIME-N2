@@ -1,0 +1,28 @@
+body {
+    background-color: #F4F8FC;
+}
+
+main h1 {
+    color: #1b3566;
+    font-weight: 700;
+}
+
+form {
+    padding: 20px;
+    border-radius: 6px;
+    background-color: white;
+}
+
+form label {
+    color: #1F355D;
+    font-weight: 600;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #9CA3AF;
+}
+
+.form-text {
+    color: #94A3B8;
+}
