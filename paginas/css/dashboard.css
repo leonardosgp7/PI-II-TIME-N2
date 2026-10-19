@@ -17,7 +17,6 @@
 .indicador-CONCLUIDA    { border-left-color: #198754; }
 .indicador-CANCELADA    { border-left-color: #dc3545; }
 
-/* Cores das etiquetas (badges) */
 .status-ABERTA       { background-color: #e9ecef; color: #41464b; }
 .status-EM_ANDAMENTO { background-color: #cfe2ff; color: #084298; }
 .status-EM_REVISAO   { background-color: #ffe5d0; color: #8a4b08; }
