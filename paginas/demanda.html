@@ -12,6 +12,7 @@
     <script src="js/api.js" defer></script>
     <script src="js/utils.js" defer></script>
     <script src="js/navbar.js" defer></script>
+    <script src="js/demanda.js" defer></script>
 </head>
 <body>
     
@@ -19,40 +20,42 @@
 
 <main>
 
+    <div id="mensagem"></div>
+
     <nav class="breadcrumb">
         <a href="dashboard.html">Dashboard</a> /
         <a href="demandas.html">Demandas</a> /
-        #11
+        <span id="breadcrumb-numero">#11</span>
     </nav>
 
     <section class="card">
-        <small class="numero">Demanda #11</small>
-        <h1 class="titulo">teste</h1>
+        <small class="numero" id="numero">Demanda #11</small>
+        <h1 class="titulo" id="titulo">teste</h1>
 
         <div class="tags">
-            <span class="tag status">Concluída</span>
-            <span class="tag prioridade">Média</span>
-            <span class="tag tipo">Melhoria</span>
+            <span class="tag status" id="tag-status">Concluída</span>
+            <span class="tag prioridade" id="tag-prioridade">Média</span>
+            <span class="tag tipo" id="tag-tipo">Melhoria</span>
         </div>
 
         <p class="aviso">Nenhuma ação disponível para o seu perfil nesta demanda.</p>
 
-        <div class="info-grid">
+                <div class="info-grid">
             <div class="info-col">
                 <div class="info-item">
                     <span class="rotulo">Projeto</span>
-                    <span class="valor">Aplicativo Mobile</span>
+                    <span class="valor" id="projeto">Aplicativo Mobile</span>
                 </div>
                 <div class="info-item">
                     <span class="rotulo">Data de criação</span>
-                    <span class="valor">10/09/2026 22:50</span>
+                    <span class="valor" id="data-criacao">10/09/2026 22:50</span>
                 </div>
             </div>
 
             <div class="info-col">
                 <div class="info-item">
                     <span class="rotulo">Responsável</span>
-                    <span class="valor">Bruno Carvalho</span>
+                    <span class="valor" id="responsavel">Bruno Carvalho</span>
                 </div>
                 <div class="info-item">
                     <span class="rotulo">Última atualização</span>
@@ -67,7 +70,7 @@
                 </div>
                 <div class="info-item">
                     <span class="rotulo">Prazo de finalização</span>
-                    <span class="valor">31/08/2026</span>
+                    <span class="valor" id="prazo">31/08/2026</span>
                 </div>
             </div>
         </div>
