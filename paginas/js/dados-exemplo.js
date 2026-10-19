@@ -33,7 +33,6 @@ const DEMANDAS_EXEMPLO = [
 
 const PROJETOS_EXEMPLO = [PORTAL, MOBILE, FINANCEIRO];
 
-// "projetos" = ids dos projetos em que o usuário participa
 const USUARIOS_EXEMPLO = [
   { id: 1, nome: 'Ana Souza', email: 'ana.souza@exemplo.com', perfil: 'ADMINISTRADOR', ativo: true, projetos: [] },
   { id: 2, nome: 'Diego Almeida', email: 'diego.almeida@exemplo.com', perfil: 'MEMBRO', ativo: true, projetos: [1] },
@@ -42,7 +41,6 @@ const USUARIOS_EXEMPLO = [
   { id: 5, nome: 'Gustavo Lima', email: 'gustavo.lima@exemplo.com', perfil: 'LIDER', ativo: false, projetos: [] }
 ];
 
-// Simula as respostas da API. Adicionar aqui as rotas que cada página for usando.
 async function respostaExemplo(metodo, caminho, corpo) {
   if (metodo === 'GET' && caminho === '/demandas') {
     return DEMANDAS_EXEMPLO;

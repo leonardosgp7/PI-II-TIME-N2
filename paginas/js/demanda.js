@@ -28,12 +28,18 @@ function mostrarDemanda(demanda) {
   document.getElementById('numero').textContent = `Demanda #${demanda.id}`;
   document.getElementById('titulo').textContent = demanda.titulo;
 
-  document.getElementById('tag-status').textContent = ROTULOS.status[demanda.status];
-  document.getElementById('tag-prioridade').textContent = ROTULOS.prioridade[demanda.prioridade];
-  document.getElementById('tag-tipo').textContent = ROTULOS.tipo[demanda.tipo];
+  mostrarEtiqueta('tag-status', 'status', demanda.status);
+  mostrarEtiqueta('tag-prioridade', 'prioridade', demanda.prioridade);
+  mostrarEtiqueta('tag-tipo', 'tipo', demanda.tipo);
 
   document.getElementById('projeto').textContent = demanda.projeto.nome;
   document.getElementById('responsavel').textContent = responsavel;
   document.getElementById('data-criacao').textContent = formatarData(demanda.dataCriacao);
   document.getElementById('prazo').textContent = formatarData(demanda.prazo);
+}
+
+function mostrarEtiqueta(idElemento, campo, codigo) {
+  const etiqueta = document.getElementById(idElemento);
+  etiqueta.textContent = ROTULOS[campo][codigo];
+  etiqueta.className = `badge rounded-pill ${campo}-${codigo}`;
 }
