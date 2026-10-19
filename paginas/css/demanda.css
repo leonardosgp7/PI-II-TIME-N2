@@ -1,0 +1,89 @@
+
+.secao-titulo {
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--bs-secondary-color);
+}
+
+.rotulo {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--bs-secondary-color);
+}
+
+.status-ABERTA       { background-color: #e9ecef; color: #41464b; }
+.status-EM_ANDAMENTO { background-color: #cfe2ff; color: #084298; }
+.status-EM_REVISAO   { background-color: #ffe5d0; color: #8a4b08; }
+.status-CONCLUIDA    { background-color: #d1e7dd; color: #0f5132; }
+.status-CANCELADA    { background-color: #f8d7da; color: #842029; }
+
+.prioridade-CRITICA { background-color: #842029; color: #fff; }
+.prioridade-ALTA    { background-color: #f8d7da; color: #842029; }
+.prioridade-MEDIA   { background-color: #fff3cd; color: #664d03; }
+.prioridade-BAIXA   { background-color: #e2e3e5; color: #41464b; }
+
+.tipo-TAREFA        { background-color: #e7f1ff; color: #084298; }
+.tipo-DEFEITO       { background-color: #ffe2e2; color: #842029; }
+.tipo-MELHORIA      { background-color: #e3f9e5; color: #0f5132; }
+.tipo-DOCUMENTACAO  { background-color: #ede7f6; color: #4527a0; }
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #1b3a6b;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .border-start-md {
+    border-left: 1px solid var(--bs-border-color);
+    padding-left: 1.5rem;
+  }
+}
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 8px;
+  bottom: 12px;
+  width: 2px;
+  background-color: var(--bs-border-color);
+}
+.timeline li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #1b3a6b;
+}
+.timeline time {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--bs-secondary-color);
+  margin-top: 2px;
+}
