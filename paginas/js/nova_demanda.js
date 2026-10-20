@@ -51,7 +51,7 @@ function limparErros() {
     });
 }
 
-formulario.addEventListener("submit", function (event) {
+formulario.addEventListener("submit", async function (event) {
     event.preventDefault();
     limparErros();
 
@@ -101,6 +101,16 @@ formulario.addEventListener("submit", function (event) {
     }
 
     if (formValido) {
+
+       await api.post("/demanda", {
+            titulo,
+            descricao,
+            projeto, 
+            responsavel,
+            tipo,
+            prioridade,
+            data,
+        })
         alert("Demanda cadastrada com sucesso!");
     }
 });
