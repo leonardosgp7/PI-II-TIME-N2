@@ -1,3 +1,7 @@
+/* 
+Autor: Vittor Maia Hagge
+RA: 26025923
+*/
 const formulario = document.querySelector("#formulario");
 
 const campoTitulo = document.querySelector("#titulo");
