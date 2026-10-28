@@ -1,9 +1,16 @@
 {
   "extends": "@tsconfig/recommended/tsconfig.json",
   "compilerOptions": {
+    "target": "ES2022", // Define a versão do JavaScript alvo
+    "module": "CommonJS", // Compatível com o runtime do Node.js usado pelo projeto
+    "moduleResolution": "Node", // Resolve módulos como o Node faz
     "rootDir": "src", // Diretório de códigos TypeScript
     "outDir": "lib", // Diretório de saída para os arquivos compilados
     "sourceMap": true, // Gera mapas de origem para facilitar o debug
+    "esModuleInterop": true, // Permite imports default em libs sem export default
+    "allowSyntheticDefaultImports": true, // Facilita imports de módulos CommonJS
+    "strict": true, // Ativa checagem estrita de tipos
+    "skipLibCheck": true, // Ignora checagem de tipos de bibliotecas de terceiros
     "noImplicitAny": true, // Não permite declaração de variáveis ou parâmetros sem tipo
     "noImplicitReturns": true, // Verifica se todas as funções possuem tipo de retorno informado
     "noEmitOnError": true, // Não gera o código JS caso haja algum erro durante o processo de compilação
