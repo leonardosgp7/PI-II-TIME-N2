@@ -1,4 +1,7 @@
-
+/*
+Autor: Leonardo Setti Garcia Peres
+RA: 26029250
+*/
 const LINKS_NAVBAR = [
   { id: 'dashboard', texto: 'Dashboard', href: 'dashboard.html' },
   { id: 'demandas', texto: 'Demandas', href: 'demandas.html' },

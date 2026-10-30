@@ -1,3 +1,8 @@
+/*
+Autor: Leonardo Setti Garcia Peres
+RA: 26029250
+*/
+
 import { readFile } from 'fs/promises';
 import * as path from 'path';
 import { createConnection, createPool, type Pool, type PoolOptions } from 'mysql2/promise';

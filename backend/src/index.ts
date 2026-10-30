@@ -1,3 +1,8 @@
+/*
+Autor: Leonardo Setti Garcia Peres
+RA: 26029250
+*/
+
 import express, { Request, Response } from 'express';
 import 'dotenv/config';
 import cors from 'cors';

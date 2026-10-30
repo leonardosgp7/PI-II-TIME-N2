@@ -1,3 +1,8 @@
+/*
+Autor: Leonardo Setti Garcia Peres
+RA: 26029250
+*/
+
 const ROTULOS = {
   status: {
     ABERTA: 'Aberta',
