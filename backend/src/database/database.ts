@@ -29,6 +29,7 @@ export function criarDatabasePool(): Pool {
     connectionLimit: 10,
     queueLimit: 0,
     multipleStatements: true,
+    dateStrings: true,
   };
 
   return createPool(config);
