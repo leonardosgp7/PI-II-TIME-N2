@@ -68,7 +68,7 @@ async function requisicaoApi(metodo, caminho, corpo) {
     throw new Error('Não foi possível conectar ao servidor.');
   }
 
-  if (resposta.status === 401) {
+  if (resposta.status === 401 && caminho !== '/auth/login') {
     encerrarSessao();
     throw new Error('Sessão expirada. Faça login novamente.');
   }
