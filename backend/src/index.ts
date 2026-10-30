@@ -9,6 +9,7 @@ import cors from 'cors';
 import { inicializarDatabase, pool } from './database/database';
 import demandaRoutes from './routes/demanda';
 import usersRoutes from './routes/users';
+import authRoutes from './routes/auth';
 import { authMiddleware } from './middlewares/auth.middleware';
 
 const app = express();
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use(authMiddleware)
 
 
+app.use('/api/auth', authRoutes);
 app.use('/api/demandas', demandaRoutes);
 app.use('/api/usuarios', usersRoutes);
 
@@ -28,6 +30,11 @@ app.get('/api/saude', (req: Request, res: Response) => {
 });
 
 async function startServer() {
+  if (!process.env.JWT_SECRET) {
+    console.error('Faltou o JWT_SECRET');
+    process.exit(1);
+  }
+
   try {
     await inicializarDatabase();
     console.log('Banco inicializado com sucesso.');

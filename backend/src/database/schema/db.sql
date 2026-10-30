@@ -1,8 +1,13 @@
+-- Autor: Leonardo Setti Garcia Peres
+-- RA: 26029250
+
+
 CREATE DATABASE IF NOT EXISTS sistema_demandas;
 USE sistema_demandas;
 
 CREATE TABLE IF NOT EXISTS perfil (
     id_perfil INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(30) NOT NULL UNIQUE,
     nome VARCHAR(100) NOT NULL UNIQUE
 );
 
@@ -28,17 +33,20 @@ CREATE TABLE IF NOT EXISTS projeto (
 
 CREATE TABLE IF NOT EXISTS tipo_demanda (
     id_tipo INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(30) NOT NULL UNIQUE,
     nome VARCHAR(100) NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS prioridade (
     id_prioridade INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(30) NOT NULL UNIQUE,
     nome VARCHAR(100) NOT NULL UNIQUE,
     nivel INT NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS status_demanda (
     id_status INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(30) NOT NULL UNIQUE,
     nome VARCHAR(100) NOT NULL UNIQUE
 );
 
@@ -54,7 +62,8 @@ CREATE TABLE IF NOT EXISTS demanda (
     fk_prioridade_id_prioridade INT NOT NULL,
     fk_status_demanda_id_status INT NOT NULL,
     fk_projeto_id_projeto INT NOT NULL,
-    fk_usuario_id_usuario INT NOT NULL,
+    fk_usuario_criador INT NOT NULL,
+    fk_usuario_responsavel INT NULL,
 
     CONSTRAINT fk_demanda_tipo
         FOREIGN KEY (fk_tipo_demanda_id_tipo)
@@ -72,13 +81,17 @@ CREATE TABLE IF NOT EXISTS demanda (
         FOREIGN KEY (fk_projeto_id_projeto)
         REFERENCES projeto(id_projeto),
 
-    CONSTRAINT fk_demanda_usuario
-        FOREIGN KEY (fk_usuario_id_usuario)
+    CONSTRAINT fk_demanda_criador
+        FOREIGN KEY (fk_usuario_criador)
+        REFERENCES usuario(id_usuario),
+
+    CONSTRAINT fk_demanda_responsavel
+        FOREIGN KEY (fk_usuario_responsavel)
         REFERENCES usuario(id_usuario),
 
     INDEX idx_demanda_projeto (fk_projeto_id_projeto),
     INDEX idx_demanda_status (fk_status_demanda_id_status),
-    INDEX idx_demanda_usuario (fk_usuario_id_usuario),
+    INDEX idx_demanda_responsavel (fk_usuario_responsavel),
     INDEX idx_demanda_prazo (prazo_finalizacao)
 );
 

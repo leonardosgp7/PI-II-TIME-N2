@@ -3,7 +3,6 @@
   "compilerOptions": {
     "target": "ES2022", // Define a versão do JavaScript alvo
     "module": "CommonJS", // Compatível com o runtime do Node.js usado pelo projeto
-    "moduleResolution": "Node", // Resolve módulos como o Node faz
     "rootDir": "src", // Diretório de códigos TypeScript
     "outDir": "lib", // Diretório de saída para os arquivos compilados
     "sourceMap": true, // Gera mapas de origem para facilitar o debug

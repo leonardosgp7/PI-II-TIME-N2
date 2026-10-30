@@ -80,9 +80,23 @@ form.addEventListener('submit', function (event) {
         return;
     }
 
+    event.preventDefault();
     esconderAlerta();
     botaoCarregando(true);
+    fazerLogin(campoEmail.value, campoSenha.value);
 });
+
+async function fazerLogin(email, senha) {
+    try {
+        const resposta = await api.post('/auth/login', { email: email, senha: senha });
+
+        salvarSessao(resposta.token, resposta.usuario);
+        window.location.href = 'dashboard.html';
+    } catch (erro) {
+        botaoCarregando(false);
+        mostrarAlerta(erro.message);
+    }
+}
 
 campoEmail.addEventListener('input', function () {
     if (campoEmail.classList.contains('is-invalid')) {

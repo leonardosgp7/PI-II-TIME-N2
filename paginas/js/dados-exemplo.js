@@ -46,6 +46,14 @@ async function respostaExemplo(metodo, caminho, corpo) {
     return DEMANDAS_EXEMPLO;
   }
 
+  if (metodo === 'POST' && caminho === '/auth/login') {
+    const usuario = USUARIOS_EXEMPLO.find((u) => u.email === corpo.email);
+    if (!usuario || corpo.senha !== '123456') {
+      throw new Error('E-mail ou senha incorretos.');
+    }
+    return { token: 'token-de-exemplo', usuario: { id: usuario.id, nome: usuario.nome, perfil: usuario.perfil } };
+  }
+
   if (metodo === 'GET' && caminho === '/projetos') {
     return PROJETOS_EXEMPLO;
   }

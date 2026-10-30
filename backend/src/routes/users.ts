@@ -5,11 +5,11 @@ const router = express.Router();
 
 router.get("/", async (req: Request, res: Response) => {
     try {
-        const [rows] = await pool.query("SELECT * FROM usuario");
+        const [rows] = await pool.query("SELECT id_usuario, nome, email, ativo, fk_perfil_id_perfil FROM usuario");
         res.json(rows);
     } catch (error) {
         console.error("Erro ao buscar usuários:", error);
-        res.status(500).json({ error: "Erro ao buscar usuários" });
+        res.status(500).json({ mensagem: "Erro ao buscar usuários" });
     }
 });
 

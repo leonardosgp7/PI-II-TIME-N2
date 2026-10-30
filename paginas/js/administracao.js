@@ -1,4 +1,7 @@
-
+/*
+Autor: Leonardo Setti Garcia Peres
+RA: 26029250
+*/
 let usuarios = [];
 let projetos = [];
 let modalUsuario;
