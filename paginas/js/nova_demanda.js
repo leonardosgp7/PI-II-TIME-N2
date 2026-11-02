@@ -62,7 +62,7 @@ formulario.addEventListener("submit", async function (event) {
     const titulo = campoTitulo.value.trim();
     const descricao = campoDescricao.value.trim();
     const projeto = campoProjeto.value;
-    const responsavel = campoResponsavel.value;
+    const responsavel = campoResponsavel.value.trim();
     const tipo = campoTipo.value;
     const prioridade = campoPrioridade.value;
     const data = campoData.value;
@@ -84,11 +84,6 @@ formulario.addEventListener("submit", async function (event) {
         formValido = false;
     }
 
-    if (responsavel === "") {
-        mostrarErro(campoResponsavel, erroResponsavel, "Selecione um responsável.");
-        formValido = false;
-    }
-
     if (tipo === "") {
         mostrarErro(campoTipo, erroTipo, "Selecione um tipo.");
         formValido = false;
@@ -104,19 +99,45 @@ formulario.addEventListener("submit", async function (event) {
         formValido = false;
     }
 
-    if (formValido) {
+    if (!formValido) {
+        return;
+    }
 
-       await api.post("/demanda", {
-            titulo,
-            descricao,
-            projeto, 
-            responsavel,
-            tipo,
-            prioridade,
-            data,
-        })
+    try {
+        await api.post("/demandas", {
+            titulo: titulo,
+            descricao: descricao,
+            projetoId: projeto,
+            responsavel: responsavel,
+            tipo: tipo,
+            prioridade: prioridade,
+            prazo: data
+        });
+
         alert("Demanda cadastrada com sucesso!");
+        formulario.reset();
+    } catch (erro) {
+        if (erro.message.includes("feriado")) {
+            mostrarErro(campoData, erroData, erro.message);
+        } else {
+            alert(erro.message);
+        }
     }
 });
 
 formulario.addEventListener("reset", limparErros);
+
+
+async function carregarProjetos() {
+    try {
+        const projetos = await api.get("/projetos");
+
+        projetos.forEach(function (projeto) {
+            campoProjeto.innerHTML += '<option value="' + projeto.id + '">' + projeto.nome + '</option>';
+        });
+    } catch (erro) {
+        mostrarErro(campoProjeto, erroProjeto, "Não foi possível carregar os projetos.");
+    }
+}
+
+carregarProjetos();
