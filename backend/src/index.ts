@@ -80,8 +80,12 @@ interface Historico {
   data: string;
 }
 
-let demandas: Demanda[] = [];
-let proximoIdDemanda = 1;
+let demandas: Demanda[] = [
+  { id: 1, titulo: "Corrigir login", descricao: "Erro ao entrar", projetoId: 1, responsavel: null, tipo: "Defeito", prioridade: "Crítica", prazo: "2026-12-10", status: "Aberta", criadorId: 1, dataCriacao: "2026-11-01T10:00:00.000Z" },
+  { id: 2, titulo: "Tela de notas", descricao: "Nova tela", projetoId: 2, responsavel: "Mateus", tipo: "Melhoria", prioridade: "Média", prazo: "2026-12-11", status: "Aberta", criadorId: 1, dataCriacao: "2026-11-01T11:00:00.000Z" },
+  { id: 3, titulo: "Integrar boletos", descricao: "API do banco", projetoId: 3, responsavel: null, tipo: "Tarefa", prioridade: "Difícil", prazo: "2026-12-14", status: "Aberta", criadorId: 1, dataCriacao: "2026-11-01T12:00:00.000Z" },
+];
+let proximoIdDemanda = 4;
 
 let historicos: Historico[] = [];
 let proximoIdHistorico = 1;
@@ -142,6 +146,32 @@ app.post('/api/demandas', async (req: Request, res: Response) => {
 
   return res.status(201).json(novaDemanda);
 });
+
+
+interface Participa {
+  usuarioId: number;
+  projetoId: number;
+}
+
+let participa: Participa[] = [
+  { usuarioId: 2, projetoId: 1 },
+  { usuarioId: 3, projetoId: 2 },
+  { usuarioId: 3, projetoId: 3 },
+];
+
+app.get('/api/demandas', (req: Request, res: Response) => {
+  if (usuarioLogado.perfil === "Admin") {
+    return res.status(200).json(demandas);
+  }
+
+  const visiveis = demandas.filter((demanda) => {
+    const vinculo = participa.find((item) => item.usuarioId === usuarioLogado.id && item.projetoId === demanda.projetoId);
+    return vinculo !== undefined;
+  });
+
+  return res.status(200).json(visiveis);
+});
+
 
 app.get('/api/historicos', (req: Request, res: Response) => {
   return res.status(200).json(historicos);
