@@ -34,6 +34,7 @@ app.get('/api/feriados/verificar', async (req: Request, res: Response) => {
 });
     
 
+
 app.listen(PORTA, () => {
   console.log(`API rodando em http://localhost:${PORTA}/api`);
 });
