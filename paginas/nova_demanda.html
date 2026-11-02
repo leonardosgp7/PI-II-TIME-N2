@@ -58,22 +58,15 @@ RA: 26025923
                     <label for="projeto" class="form-label">Projeto<sup>*</sup></label>
                     <select id="projeto" name="projeto" class="form-select">
                         <option value="">Selecione o projeto</option>
-                        <option value="empresarial">Empresarial</option>
-                        <option value="base">Base</option>
-                        <option value="colegial">Colegial</option>
                     </select>
                     <div id="erroProjeto" class="invalid-feedback"></div>
                     <div class="form-text">O projeto não pode ser alterado após a criação</div>
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label for="responsavel" class="form-label">Responsável<sup>*</sup></label>
-                    <select id="responsavel" name="responsavel" class="form-select">
-                        <option value="">Selecione um responsável...</option>
-                        <option value="ana">Ana</option>
-                        <option value="vittor">Vittor</option>
-                        <option value="mauricio">Maurício</option>
-                    </select>
+                    <label for="responsavel" class="form-label">Responsável</label>
+                    <input id="responsavel" type="text" name="responsavel" class="form-control"
+                           placeholder="Digite o nome do responsável">
                     <div id="erroResponsavel" class="invalid-feedback"></div>
                 </div>
             </div>
@@ -83,9 +76,10 @@ RA: 26025923
                     <label for="tipo" class="form-label">Tipo<sup>*</sup></label>
                     <select id="tipo" name="tipo" class="form-select">
                         <option value="">Selecione um tipo...</option>
-                        <option value="projeto">Projeto</option>
-                        <option value="tarefa">Tarefa</option>
-                        <option value="trabalho">Trabalho</option>
+                        <option value="Defeito">Defeito</option>
+                        <option value="Tarefa">Tarefa</option>
+                        <option value="Melhoria">Melhoria</option>
+                        <option value="Documentação">Documentação</option>
                     </select>
                     <div id="erroTipo" class="invalid-feedback"></div>
                 </div>
@@ -94,9 +88,10 @@ RA: 26025923
                     <label for="prioridade" class="form-label">Prioridade<sup>*</sup></label>
                     <select id="prioridade" name="prioridade" class="form-select">
                         <option value="">Selecione uma prioridade...</option>
-                        <option value="facil">Fácil</option>
-                        <option value="media">Média</option>
-                        <option value="dificil">Difícil</option>
+                        <option value="Facil">Fácil</option>
+                        <option value="Media">Média</option>
+                        <option value="Dificil">Difícil</option>
+                        <option value="Crítica">Crítica</option>
                     </select>
                     <div id="erroPrioridade" class="invalid-feedback"></div>
                 </div>
