@@ -12,7 +12,10 @@ app.get('/api/saude', (req: Request, res: Response) => {
   res.json({ status: 'ok' });
 });
 
-
+/* 
+Autor: Vittor Maia Hagge
+RA: 26025923
+*/
 app.get('/api/feriados/verificar', async (req: Request, res: Response) => {
   const { data } = req.query;
 

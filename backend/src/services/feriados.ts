@@ -1,3 +1,7 @@
+/* 
+Autor: Vittor Maia Hagge
+RA: 26025923
+*/
 interface Feriado {
   date: string;
   name: string;
