@@ -85,7 +85,7 @@ formulario.addEventListener("submit", async function (event) {
     }
 
     if (responsavel === "") {
-        mostrarErro(campoResponsavel, erroResponsavel, "Selecione um responsável.");
+        mostrarErro(campoResponsavel, erroResponsavel, "Digite um responsável.");
         formValido = false;
     }
 
