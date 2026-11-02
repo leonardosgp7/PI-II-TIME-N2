@@ -81,5 +81,19 @@ async function respostaExemplo(metodo, caminho, corpo) {
     return usuario;
   }
 
+  const rotaDemanda = caminho.match(/^\/demandas\/(\d+)$/);
+  if (metodo === 'PUT' && rotaDemanda) {
+    const demanda = DEMANDAS_EXEMPLO.find((d) => d.id === Number(rotaDemanda[1]));
+    if (!demanda) throw new Error('Demanda não encontrada.');
+    demanda.titulo = corpo.titulo;
+    demanda.descricao = corpo.descricao;
+    demanda.prioridade = corpo.prioridade;
+    demanda.prazo = corpo.prazo;
+    demanda.responsavel = corpo.responsavel
+      ? USUARIOS_EXEMPLO.find((u) => u.id === corpo.responsavel)
+      : null;
+    return demanda;
+  }
+
   throw new Error(`Rota ${metodo} ${caminho} ainda não tem dado de exemplo (ver dados-exemplo.js).`);
 }
