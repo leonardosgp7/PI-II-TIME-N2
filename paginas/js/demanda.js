@@ -32,6 +32,8 @@ function mostrarDemanda(demanda) {
   mostrarEtiqueta('tag-prioridade', 'prioridade', demanda.prioridade);
   mostrarEtiqueta('tag-tipo', 'tipo', demanda.tipo);
 
+  document.getElementById('botaoEditar').href = `editar_demanda.html?id=${demanda.id}`;
+
   document.getElementById('projeto').textContent = demanda.projeto.nome;
   document.getElementById('responsavel').textContent = responsavel;
   document.getElementById('data-criacao').textContent = formatarData(demanda.dataCriacao);
