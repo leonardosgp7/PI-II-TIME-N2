@@ -1,4 +1,7 @@
-
+/*
+Autor: Leonardo Setti Garcia Peres
+RA: 26029250
+*/
 const DIAS_ALERTA_PRAZO = 7;
 
 document.addEventListener('DOMContentLoaded', carregarDashboard);

@@ -1,3 +1,8 @@
+/*
+Autor: Leonardo Setti Garcia Peres
+RA: 26029250
+*/
+
 const API_URL = 'http://localhost:3000/api';
 
 const USAR_DADOS_EXEMPLO = true;
@@ -63,7 +68,7 @@ async function requisicaoApi(metodo, caminho, corpo) {
     throw new Error('Não foi possível conectar ao servidor.');
   }
 
-  if (resposta.status === 401) {
+  if (resposta.status === 401 && caminho !== '/auth/login') {
     encerrarSessao();
     throw new Error('Sessão expirada. Faça login novamente.');
   }
