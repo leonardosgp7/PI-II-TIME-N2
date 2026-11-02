@@ -1,8 +1,14 @@
-
+/*
+Autor: João Antero Paiva
+RA: 26028470
+*/
 const DIAS_ALERTA_PRAZO = 7;
 
 // Peso de cada prioridade, usado para ordenar
 const ORDEM_PRIORIDADE = { CRITICA: 4, ALTA: 3, MEDIA: 2, BAIXA: 1 };
+
+// Peso de cada status, usado para ordenar
+const ORDEM_STATUS = { ABERTA: 5, EM_ANDAMENTO: 4, EM_REVISAO: 3, CONCLUIDA: 2, CANCELADA: 1 };
 
 let demandas = [];
 let projetos = [];
@@ -124,6 +130,10 @@ function aplicarFiltros(filtros) {
 function valorParaOrdenar(demanda, campo) {
   if (campo === 'prioridade') {
     return ORDEM_PRIORIDADE[demanda.prioridade] || 0;
+  }
+
+  if (campo === 'status') {
+    return ORDEM_STATUS[demanda.status] || 0;
   }
 
   const data = converterData(campo === 'prazo' ? demanda.prazo : demanda.dataCriacao);
