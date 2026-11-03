@@ -31,6 +31,9 @@ const DEMANDAS_EXEMPLO = [
   { id: 10, titulo: 'Manual de implantação', tipo: 'DOCUMENTACAO', prioridade: 'MEDIA', status: 'CONCLUIDA', projeto: FINANCEIRO, responsavel: ELISA, dataCriacao: dataDaquiA(-20), prazo: dataDaquiA(1) }
 ];
 
+const DEMANDAS_NOVAS = JSON.parse(localStorage.getItem('demandasNovas') || '[]');
+DEMANDAS_NOVAS.forEach((demanda) => DEMANDAS_EXEMPLO.push(demanda));
+
 const PROJETOS_EXEMPLO = [PORTAL, MOBILE, FINANCEIRO];
 
 const USUARIOS_EXEMPLO = [
@@ -103,6 +106,8 @@ async function respostaExemplo(metodo, caminho, corpo) {
       prazo: corpo.prazo
     };
     DEMANDAS_EXEMPLO.push(nova);
+    DEMANDAS_NOVAS.push(nova);                                             
+    localStorage.setItem('demandasNovas', JSON.stringify(DEMANDAS_NOVAS));
     return { id: nova.id, mensagem: 'Demanda cadastrada com sucesso.' };
   }
 
