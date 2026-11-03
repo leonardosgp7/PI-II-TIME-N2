@@ -1,3 +1,8 @@
+/*
+Autor: Lucas Augusto Pacola Zillo
+RA: 26026539
+*/
+
 document.addEventListener('DOMContentLoaded', carregarDemanda);
 
 async function carregarDemanda() {
@@ -46,6 +51,7 @@ function mostrarDemanda(demanda) {
   document.getElementById('prazo').textContent = formatarData(demanda.prazo);
     mostrarComentarios(demanda.comentarios);
     mostrarHistorico(demanda.historico);
+    mostrarBotoesStatus(demanda);
 }
 
 function mostrarEtiqueta(idElemento, campo, codigo) {
@@ -142,4 +148,69 @@ function mostrarHistorico(historico) {
       <time>${escaparHtml(formatarDataHora(h.dataHora))}</time>
     </li>
   `).join('');
+}
+
+const PROXIMOS_STATUS = {
+  ABERTA: [{ codigo: 'EM_ANDAMENTO', texto: 'Iniciar' }],
+  EM_ANDAMENTO: [{ codigo: 'EM_REVISAO', texto: 'Enviar para revisão' }],
+  EM_REVISAO: [
+    { codigo: 'CONCLUIDA', texto: 'Concluir' },
+    { codigo: 'EM_ANDAMENTO', texto: 'Devolver para andamento' }
+  ]
+};
+
+function botoesPermitidos(demanda, usuario) {
+  const perfil = usuario ? usuario.perfil : null;
+  let botoes = [...(PROXIMOS_STATUS[demanda.status] || [])];
+
+  if (perfil === 'MEMBRO') {
+    const ehResponsavel = demanda.responsavel && demanda.responsavel.id === usuario.id;
+    if (!ehResponsavel) return [];
+    botoes = botoes.filter((b) => b.codigo === 'EM_ANDAMENTO' || b.codigo === 'EM_REVISAO');
+  }
+
+  if (demandaEmAberto(demanda)) {
+    botoes.push({ codigo: 'CANCELADA', texto: 'Cancelar', perigo: true });
+  }
+
+  return botoes;
+}
+
+function mostrarBotoesStatus(demanda) {
+  const aviso = document.getElementById('area-acoes');
+  const usuario = obterUsuarioLogado();
+  const botoes = botoesPermitidos(demanda, usuario);
+
+  if (botoes.length === 0) {
+    aviso.innerHTML = '<p class="text-secondary">Nenhuma ação disponível para o seu perfil nesta demanda.</p>';
+    return;
+  }
+
+  aviso.innerHTML = '<div class="d-flex flex-wrap gap-2 mb-3" id="botoes-status"></div>';
+  const area = document.getElementById('botoes-status');
+
+  botoes.forEach((b) => {
+    const botao = document.createElement('button');
+    botao.type = 'button';
+    botao.className = b.perigo ? 'btn btn-outline-danger' : 'btn btn-outline-primary';
+    botao.textContent = b.texto;
+    botao.addEventListener('click', () => mudarStatus(demanda.id, b));
+    area.appendChild(botao);
+  });
+}
+
+async function mudarStatus(id, botao) {
+  limparMensagem();
+
+  if (botao.codigo === 'CANCELADA') {
+    const confirmou = window.confirm('Tem certeza que deseja cancelar esta demanda?');
+    if (!confirmou) return;
+  }
+
+  try {
+    await api.put('/demandas/' + id + '/status', { status: botao.codigo });
+    await carregarDemanda();
+  } catch (erro) {
+    mostrarMensagem(erro.message);
+  }
 }
