@@ -1,3 +1,8 @@
+/*
+Autor: Vittor Maia Hagge
+RA: 26025923
+*/
+
 import express, { Request, Response } from "express";
 import { pool } from "../database/database";
 import { RowDataPacket, ResultSetHeader } from "mysql2";      
@@ -5,10 +10,6 @@ import { buscarFeriado } from "../services/feriados";
 
 const router = express.Router();
 
-/*
-Autor: Vittor Maia Hagge
-RA: 26025923
-*/
 
 function paraDemanda(linha: RowDataPacket) {
     let responsavel = null;
@@ -84,6 +85,17 @@ router.post("/", async (req: Request, res: Response) => {
     }
 
     try {
+        
+        if (logado.perfil !== "ADMINISTRADOR") {
+            const [vinculos] = await pool.query<RowDataPacket[]>(
+                "SELECT * FROM participa WHERE fk_projeto_id_projeto = ? AND fk_usuario_id_usuario = ?",
+                [projetoId, logado.id]
+        );
+        if (vinculos.length === 0) {
+            return res.status(403).json({ mensagem: "Você não participa deste projeto." });
+        }
+        }
+
         if (prazo) {
             const feriado = await buscarFeriado(prazo);
             if (feriado) {

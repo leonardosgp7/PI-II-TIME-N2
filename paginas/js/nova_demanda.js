@@ -141,3 +141,20 @@ async function carregarProjetos() {
 }
 
 carregarProjetos();
+
+
+async function carregarUsuarios() {
+    try {
+        const usuarios = await api.get("/usuarios");
+
+        usuarios.forEach(function (usuario) {
+            if (usuario.ativo && usuario.perfil !== "ADMINISTRADOR") {
+                campoResponsavel.innerHTML += '<option value="' + usuario.id + '">' + usuario.nome + '</option>';
+            }
+        });
+    } catch (erro) {
+        mostrarErro(campoResponsavel, erroResponsavel, "Não foi possível carregar os responsáveis.");
+    }
+}
+
+carregarUsuarios();
