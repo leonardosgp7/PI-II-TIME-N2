@@ -89,12 +89,9 @@ router.get("/:id", async (req: Request, res: Response) => {
             id: d.id_demanda,
             titulo: d.titulo,
             descricao: d.descricao,
-            tipo: d.tipo_nome,
-            tipoCodigo: d.tipo_codigo,
-            prioridade: d.prioridade_nome,
-            prioridadeCodigo: d.prioridade_codigo,
-            status: d.status_nome,
-            statusCodigo: d.status_codigo,
+            tipo: d.tipo_codigo,
+            prioridade: d.prioridade_codigo,
+            status: d.status_codigo,
             projeto: { id: d.id_projeto, nome: d.projeto_nome },
             responsavel: d.responsavel_id
                 ? { id: d.responsavel_id, nome: d.responsavel_nome }
@@ -159,7 +156,7 @@ router.post("/:id/comentarios", async (req: Request, res: Response) => {
             return;
         }
 
-        if (String(usuario.perfil).toUpperCase() !== "ADMIN") {
+        if (String(usuario.perfil).toUpperCase() !== "ADMINISTRADOR") {
             const [participacao] = await pool.query<RowDataPacket[]>(
                 `SELECT 1 FROM participa
                  WHERE fk_projeto_id_projeto = ? AND fk_usuario_id_usuario = ?`,
