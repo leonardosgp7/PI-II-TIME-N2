@@ -51,20 +51,6 @@ app.get('/api/feriados/verificar', async (req: Request, res: Response) => {
   }
 });
 
-interface Projeto {
-  id: number;
-  nome: string;
-}
-
-let projetos: Projeto[] = [
-  { id: 1, nome: "Portal Acadêmico" },
-  { id: 2, nome: "Aplicativo Mobile" },
-  { id: 3, nome: "Integração Financeira" },
-];
-
-app.get('/api/projetos', (req: Request, res: Response) => {
-  return res.status(200).json(projetos);
-});
 
 async function startServer() {
   if (!process.env.JWT_SECRET) {
