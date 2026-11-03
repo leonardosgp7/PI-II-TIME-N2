@@ -81,6 +81,31 @@ async function respostaExemplo(metodo, caminho, corpo) {
     return usuario;
   }
 
+  if (metodo === 'POST' && caminho === '/demandas') {
+    const projeto = PROJETOS_EXEMPLO.find((p) => p.id === Number(corpo.projetoId));
+    if (!projeto) throw new Error('Projeto não encontrado.');
+
+    let responsavel = null;
+    if (corpo.responsavelId) {
+      responsavel = USUARIOS_EXEMPLO.find((u) => u.id === Number(corpo.responsavelId));
+    }
+
+    const nova = {
+      id: DEMANDAS_EXEMPLO.length + 1,
+      titulo: corpo.titulo,
+      descricao: corpo.descricao,
+      tipo: corpo.tipo,
+      prioridade: corpo.prioridade,
+      status: 'ABERTA',
+      projeto: projeto,
+      responsavel: responsavel,
+      dataCriacao: dataDaquiA(0),
+      prazo: corpo.prazo
+    };
+    DEMANDAS_EXEMPLO.push(nova);
+    return { id: nova.id, mensagem: 'Demanda cadastrada com sucesso.' };
+  }
+
   const rotaDemanda = caminho.match(/^\/demandas\/(\d+)$/);
   if (metodo === 'PUT' && rotaDemanda) {
     const demanda = DEMANDAS_EXEMPLO.find((d) => d.id === Number(rotaDemanda[1]));
