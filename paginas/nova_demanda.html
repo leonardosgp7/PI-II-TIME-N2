@@ -65,8 +65,9 @@ RA: 26025923
 
                 <div class="col-md-6 mb-3">
                     <label for="responsavel" class="form-label">Responsável</label>
-                    <input id="responsavel" type="text" name="responsavel" class="form-control"
-                           placeholder="Digite o nome do responsável">
+                    <select id="responsavel" name="responsavel" class="form-select">
+                        <option value="">Sem responsável</option>
+                    </select>
                     <div id="erroResponsavel" class="invalid-feedback"></div>
                 </div>
             </div>
@@ -76,10 +77,10 @@ RA: 26025923
                     <label for="tipo" class="form-label">Tipo<sup>*</sup></label>
                     <select id="tipo" name="tipo" class="form-select">
                         <option value="">Selecione um tipo...</option>
-                        <option value="Defeito">Defeito</option>
-                        <option value="Tarefa">Tarefa</option>
-                        <option value="Melhoria">Melhoria</option>
-                        <option value="Documentação">Documentação</option>
+                        <option value="DEFEITO">Defeito</option>
+                        <option value="TAREFA">Tarefa</option>
+                        <option value="MELHORIA">Melhoria</option>
+                        <option value="DOCUMENTACAO">Documentação</option>
                     </select>
                     <div id="erroTipo" class="invalid-feedback"></div>
                 </div>
@@ -88,10 +89,10 @@ RA: 26025923
                     <label for="prioridade" class="form-label">Prioridade<sup>*</sup></label>
                     <select id="prioridade" name="prioridade" class="form-select">
                         <option value="">Selecione uma prioridade...</option>
-                        <option value="Facil">Fácil</option>
-                        <option value="Media">Média</option>
-                        <option value="Dificil">Difícil</option>
-                        <option value="Crítica">Crítica</option>
+                        <option value="BAIXA">Baixa</option>
+                        <option value="MEDIA">Média</option>
+                        <option value="ALTA">Alta</option>
+                        <option value="CRITICA">Crítica</option>
                     </select>
                     <div id="erroPrioridade" class="invalid-feedback"></div>
                 </div>

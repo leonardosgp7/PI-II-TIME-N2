@@ -4,6 +4,7 @@ import cors from 'cors';
 import { inicializarDatabase, pool } from './database/database';
 import demandaRoutes from './routes/demanda';
 import usersRoutes from './routes/users';
+import projetosRoutes from './routes/projetos';
 import authRoutes from './routes/auth';
 import { authMiddleware } from './middlewares/auth.middleware';
 import { buscarFeriado } from './services/feriados';
@@ -20,6 +21,7 @@ app.use(authMiddleware)
 app.use('/api/auth', authRoutes);
 app.use('/api/demandas', demandaRoutes);
 app.use('/api/usuarios', usersRoutes);
+app.use('/api/projetos', projetosRoutes);
 
 app.get('/api/saude', (req: Request, res: Response) => {
   res.json({ status: 'ok' });
@@ -49,20 +51,6 @@ app.get('/api/feriados/verificar', async (req: Request, res: Response) => {
   }
 });
 
-interface Projeto {
-  id: number;
-  nome: string;
-}
-
-let projetos: Projeto[] = [
-  { id: 1, nome: "Portal Acadêmico" },
-  { id: 2, nome: "Aplicativo Mobile" },
-  { id: 3, nome: "Integração Financeira" },
-];
-
-app.get('/api/projetos', (req: Request, res: Response) => {
-  return res.status(200).json(projetos);
-});
 
 async function startServer() {
   if (!process.env.JWT_SECRET) {
