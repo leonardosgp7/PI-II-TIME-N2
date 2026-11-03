@@ -108,7 +108,7 @@ formulario.addEventListener("submit", async function (event) {
             titulo: titulo,
             descricao: descricao,
             projetoId: projeto,
-            responsavel: responsavel,
+            responsavelId: responsavel,
             tipo: tipo,
             prioridade: prioridade,
             prazo: data
