@@ -45,6 +45,10 @@ function mostrarDemanda(demanda) {
 
   document.getElementById('botaoEditar').href = `editar_demanda.html?id=${demanda.id}`;
 
+  if (obterUsuarioLogado().perfil === 'MEMBRO') {
+    document.getElementById('botaoEditar').classList.add('d-none');
+  }
+
   document.getElementById('projeto').textContent = demanda.projeto.nome;
   document.getElementById('responsavel').textContent = responsavel;
   document.getElementById('criada-por').textContent = demanda.criadaPor.nome;

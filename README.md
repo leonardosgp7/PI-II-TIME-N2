@@ -130,9 +130,9 @@ Não dá para concluir direto de Em andamento nem voltar de Em andamento para Ab
 
 | | Administrador | Líder de Projeto | Membro da Equipe |
 |---|---|---|---|
-| Ver demandas | todas | dos projetos em que participa | dos projetos em que participa |
-| Criar demanda | sim | sim | sim |
-| Editar demanda | sim | dos seus projetos | só as atribuídas a ele |
+| Ver demandas | todas | dos projetos em que participa | dos projetos em que participa e as atribuídas a ele |
+| Criar demanda | sim | sim | não |
+| Editar demanda | sim | dos seus projetos | não |
 | Mudar prioridade e responsável | sim | sim | não |
 | Mudar status | todas as transições | todas as transições | só Aberta → Em andamento e Em andamento → Em revisão, nas suas demandas |
 | Cancelar | sim | sim | não |

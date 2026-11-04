@@ -17,6 +17,10 @@ let usuarios = [];
 document.addEventListener('DOMContentLoaded', iniciarDemandas);
 
 async function iniciarDemandas() {
+  if (obterUsuarioLogado().perfil === 'MEMBRO') {
+    document.getElementById('botaoNovaDemanda').classList.add('d-none');
+  }
+
   ligarFiltros();
   await carregarDados();
 }

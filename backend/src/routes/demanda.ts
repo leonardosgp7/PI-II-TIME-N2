@@ -71,10 +71,12 @@ router.get("/", async (req: Request, res: Response) => {
               JOIN status_demanda s ON s.id_status = d.fk_status_demanda_id_status
               JOIN projeto p        ON p.id_projeto = d.fk_projeto_id_projeto
               LEFT JOIN usuario r   ON r.id_usuario = d.fk_usuario_responsavel
-              JOIN participa pa     ON pa.fk_projeto_id_projeto = d.fk_projeto_id_projeto
-             WHERE pa.fk_usuario_id_usuario = ?
+             WHERE d.fk_projeto_id_projeto IN (
+                       SELECT fk_projeto_id_projeto FROM participa WHERE fk_usuario_id_usuario = ?
+                   )
+                OR d.fk_usuario_responsavel = ?
              ORDER BY d.id_demanda
-        `, [logado.id]);
+        `, [logado.id, logado.id]);
 
         return res.json(linhas.map(paraDemanda));
     } catch (erro) {
@@ -86,6 +88,10 @@ router.get("/", async (req: Request, res: Response) => {
 router.post("/", async (req: Request, res: Response) => {
     const logado = res.locals.usuario;
     const { titulo, descricao, projetoId, responsavelId, tipo, prioridade, prazo } = req.body;
+
+    if (logado.perfil === "MEMBRO") {
+        return res.status(403).json({ mensagem: "Membro da equipe não pode cadastrar demandas." });
+    }
 
     if (!titulo || !tipo || !prioridade || !projetoId) {
         return res.status(400).json({ mensagem: "Título, tipo, prioridade e projeto são obrigatórios." });
@@ -223,7 +229,7 @@ router.get("/:id", async (req: Request, res: Response) => {
                 [d.id_projeto, usuario.id]
             );
 
-            if (participacao.length === 0) {
+            if (participacao.length === 0 && d.responsavel_id !== usuario.id) {
                 res.status(403).json({ mensagem: "Você não tem acesso a esta demanda." });
                 return;
             }
@@ -310,7 +316,7 @@ router.post("/:id/comentarios", async (req: Request, res: Response) => {
 
     try {
         const [demandas] = await pool.query<RowDataPacket[]>(
-            "SELECT id_demanda, fk_projeto_id_projeto FROM demanda WHERE id_demanda = ?",
+            "SELECT id_demanda, fk_projeto_id_projeto, fk_usuario_responsavel FROM demanda WHERE id_demanda = ?",
             [id]
         );
 
@@ -326,7 +332,7 @@ router.post("/:id/comentarios", async (req: Request, res: Response) => {
                 [demandas[0].fk_projeto_id_projeto, usuario.id]
             );
 
-            if (participacao.length === 0) {
+            if (participacao.length === 0 && demandas[0].fk_usuario_responsavel !== usuario.id) {
                 res.status(403).json({ mensagem: "Você não tem acesso a esta demanda." });
                 return;
             }
@@ -446,7 +452,7 @@ router.put("/:id/status", async (req: Request, res: Response) => {
         const demanda = await buscarDemanda(id);
         if (!demanda) return res.status(404).json({ mensagem: "Demanda não encontrada." });
 
-        if (!(await temAcessoAoProjeto(u, demanda.fk_projeto))) {
+        if (demanda.fk_usuario_responsavel !== u.id && !(await temAcessoAoProjeto(u, demanda.fk_projeto))) {
             return res.status(403).json({ mensagem: "Você não participa deste projeto." });
         }
 
@@ -526,19 +532,19 @@ router.put("/:id", async (req: Request, res: Response) => {
             return res.status(400).json({ mensagem: "ID inválido." });
         }
 
+        if (u.perfil === "MEMBRO") {
+            return res.status(403).json({ mensagem: "Membro da equipe não pode editar demandas." });
+        }
+
         const demanda = await buscarDemanda(id);
         if (!demanda) return res.status(404).json({ mensagem: "Demanda não encontrada." });
 
         if (!(await temAcessoAoProjeto(u, demanda.fk_projeto))) {
             return res.status(403).json({ mensagem: "Você não participa deste projeto." });
         }
-        if (u.perfil === "MEMBRO" && demanda.fk_usuario_responsavel !== u.id) {
-            return res.status(403).json({ mensagem: "Membro só edita as próprias demandas." });
-        }
 
         const { titulo, descricao, prioridade, responsavelId, prazo } = req.body;
         const mudancas: Mudanca[] = [];
-        const restritas: string[] = []; // campos que só Líder/Admin podem mudar
 
         // título
         if (titulo !== undefined) {
@@ -579,7 +585,7 @@ router.put("/:id", async (req: Request, res: Response) => {
             }
         }
 
-        // prioridade (restrita a Líder/Admin)
+        // prioridade
         if (prioridade !== undefined && prioridade !== demanda.prioridade_codigo) {
             const [p] = await pool.query<RowDataPacket[]>(
                 "SELECT id_prioridade AS id, nome FROM prioridade WHERE codigo = ?",
@@ -588,14 +594,13 @@ router.put("/:id", async (req: Request, res: Response) => {
             if (p.length === 0) {
                 return res.status(400).json({ mensagem: "Prioridade inexistente.", campo: "prioridade" });
             }
-            restritas.push("prioridade");
             mudancas.push({
                 campo: "prioridade", coluna: "fk_prioridade_id_prioridade", valor: p[0].id,
                 anterior: demanda.prioridade_nome, novo: p[0].nome,
             });
         }
 
-        // responsável (restrito a Líder/Admin)
+        // responsável
         if (responsavelId !== undefined) {
             const novoResp = responsavelId === null ? null : Number(responsavelId);
             if (novoResp !== demanda.fk_usuario_responsavel) {
@@ -618,19 +623,12 @@ router.put("/:id", async (req: Request, res: Response) => {
                     }
                     nomeNovo = r[0].nome;
                 }
-                restritas.push("responsavel");
                 mudancas.push({
                     campo: "responsavel", coluna: "fk_usuario_responsavel", valor: novoResp,
                     anterior: demanda.responsavel_nome ?? "sem responsável",
                     novo: nomeNovo ?? "sem responsável",
                 });
             }
-        }
-
-        if (restritas.length > 0 && u.perfil === "MEMBRO") {
-            return res.status(403).json({
-                mensagem: "Só Líder e Admin alteram prioridade e responsável.",
-            });
         }
 
         if (mudancas.length === 0) {
