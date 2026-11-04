@@ -1,3 +1,7 @@
+/*
+Autor: Matheus Taboada Chibani Rocha
+RA: 26026115
+*/
 const form = document.getElementById('formLogin');
 const campoEmail = document.getElementById('email');
 const campoSenha = document.getElementById('password');

@@ -1,6 +1,6 @@
 /*
-Autores: Leonardo Setti Garcia Peres / João Antero Pessoti de Paiva
-RA: 26029250 / 26028470
+Autor: Leonardo Setti Garcia Peres
+RA: 26029250
 */
 let usuarios = [];
 let projetos = [];

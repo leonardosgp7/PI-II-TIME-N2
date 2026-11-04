@@ -1,3 +1,7 @@
+/*
+Autor: Leonardo Setti Garcia Peres
+RA: 26029250
+*/
 
 
 const USUARIO_EXEMPLO = { id: 1, nome: 'Ana Souza', perfil: 'ADMINISTRADOR' };
