@@ -5,7 +5,7 @@ RA: 26029250
 
 const API_URL = 'http://localhost:3000/api';
 
-const USAR_DADOS_EXEMPLO = true;
+const USAR_DADOS_EXEMPLO = false;
 
 const CHAVE_TOKEN = 'token';
 const CHAVE_USUARIO = 'usuario';
