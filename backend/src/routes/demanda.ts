@@ -1,6 +1,12 @@
 /*
 Autor: Vittor Maia Hagge
 RA: 26025923
+
+Este arquivo reúne todas as rotas de /api/demandas. A autoria de cada parte
+está indicada nos comentários ao longo do arquivo:
+- listar (GET /) e cadastrar (POST /): Vittor Maia Hagge
+- detalhe (GET /:id) e comentários (POST /:id/comentarios): Lucas Augusto Pacola Zillo
+- status (PUT /:id/status) e edição (PUT /:id): Matheus Taboada Chibani Rocha
 */
 
 import express, { Request, Response } from "express";
@@ -163,7 +169,14 @@ router.post("/", async (req: Request, res: Response) => {
     }
 });
 
+/* ------------------------------------------------------------------
+   Detalhe da demanda e comentários
+   Autor: Lucas Augusto Pacola Zillo
+   RA: 26026539
+------------------------------------------------------------------ */
 
+// GET /api/demandas/:id
+// Devolve a demanda completa, com a lista de comentários e o histórico de alterações
 router.get("/:id", async (req: Request, res: Response) => {
     const id = Number(req.params.id);
 
@@ -350,6 +363,8 @@ router.post("/:id/comentarios", async (req: Request, res: Response) => {
 
 /* ------------------------------------------------------------------
    Troca de status e edição da demanda
+   Autor: Matheus Taboada Chibani Rocha
+   RA: 26026115
 ------------------------------------------------------------------ */
 
 type Usuario = { id: number; perfil: "ADMINISTRADOR" | "LIDER" | "MEMBRO" };
