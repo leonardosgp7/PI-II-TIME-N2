@@ -55,6 +55,11 @@ export async function inicializarDatabase(): Promise<void> {
 
     await bootstrapConnection.query(`USE \`${DB_NAME}\`;`);
     await bootstrapConnection.query(schemaSql);
+
+    // dados iniciais (perfis, status, usuários de teste...). Pode rodar várias vezes sem duplicar
+    const seedPath = path.resolve(process.cwd(), 'src', 'database', 'schema', 'seed.sql');
+    const seedSql = await readFile(seedPath, 'utf8');
+    await bootstrapConnection.query(seedSql);
   } finally {
     await bootstrapConnection.end();
   }
