@@ -9,9 +9,11 @@ const API_URL = 'http://localhost:3000/api';
 
 const USAR_DADOS_EXEMPLO = false;
 
+// Nomes das chaves usadas no localStorage
 const CHAVE_TOKEN = 'token';
 const CHAVE_USUARIO = 'usuario';
 
+// Guarda o token e o usuário depois do login
 function salvarSessao(token, usuario) {
   localStorage.setItem(CHAVE_TOKEN, token);
   localStorage.setItem(CHAVE_USUARIO, JSON.stringify(usuario));
@@ -21,6 +23,7 @@ function obterToken() {
   return localStorage.getItem(CHAVE_TOKEN);
 }
 
+// Devolve o usuário logado, ou null se não houver sessão
 function obterUsuarioLogado() {
   if (USAR_DADOS_EXEMPLO) {
     return USUARIO_EXEMPLO;
@@ -30,12 +33,14 @@ function obterUsuarioLogado() {
   return usuario ? JSON.parse(usuario) : null;
 }
 
+// Apaga a sessão e volta para o login
 function encerrarSessao() {
   localStorage.removeItem(CHAVE_TOKEN);
   localStorage.removeItem(CHAVE_USUARIO);
   window.location.href = 'login.html';
 }
 
+// Manda para o login quem abrir a página sem estar logado
 function exigirLogin() {
   const usuario = obterUsuarioLogado();
   if (!usuario) {
@@ -44,6 +49,7 @@ function exigirLogin() {
   return usuario;
 }
 
+// Chama a API com o token; se a resposta for 401, encerra a sessão
 async function requisicaoApi(metodo, caminho, corpo) {
   if (USAR_DADOS_EXEMPLO) {
     return respostaExemplo(metodo, caminho, corpo);
@@ -85,6 +91,7 @@ async function requisicaoApi(metodo, caminho, corpo) {
   return dados;
 }
 
+// Atalhos usados nas páginas: api.get, api.post, api.put e api.delete
 const api = {
   get: (caminho) => requisicaoApi('GET', caminho),
   post: (caminho, corpo) => requisicaoApi('POST', caminho, corpo),

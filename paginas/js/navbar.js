@@ -12,6 +12,7 @@ const LINKS_NAVBAR = [
 
 const ICONE_SAIR = '<svg class="barra-topo-icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>';
 
+// Iniciais do nome para o avatar (ex.: Ana Souza -> AS)
 function pegarIniciais(nome) {
   const partes = nome.trim().split(' ');
   let iniciais = partes[0].charAt(0);
@@ -21,6 +22,7 @@ function pegarIniciais(nome) {
   return iniciais.toUpperCase();
 }
 
+// Monta o HTML da navbar marcando a página atual
 function criarNavbar(ativo, usuario) {
   const links = LINKS_NAVBAR.filter((link) => !link.soAdmin || usuario.perfil === 'ADMINISTRADOR').map((link) => {
     const ehAtivo = link.id === ativo;
@@ -46,6 +48,7 @@ function criarNavbar(ativo, usuario) {
     </header>`;
 }
 
+// Exige login, desenha a navbar e liga o botão de sair
 document.addEventListener('DOMContentLoaded', () => {
   const usuario = exigirLogin();
   const destino = document.getElementById('navbar');

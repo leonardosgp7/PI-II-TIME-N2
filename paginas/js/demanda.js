@@ -7,6 +7,7 @@ RA: 26026539
 
 document.addEventListener('DOMContentLoaded', carregarDemanda);
 
+// Lê o id da URL e busca a demanda completa na API
 async function carregarDemanda() {
   limparMensagem();
 
@@ -26,6 +27,7 @@ async function carregarDemanda() {
   }
 }
 
+// "AAAA-MM-DD hh:mm:ss" -> "dd/mm/aaaa hh:mm"
 function formatarDataHora(texto) {
   if (!texto) return '-';
   const [dia, hora] = texto.split(' ');
@@ -33,6 +35,7 @@ function formatarDataHora(texto) {
   return `${diaMes}/${mes}/${ano} ${(hora || '').slice(0, 5)}`.trim();
 }
 
+// Preenche os dados principais da demanda na tela
 function mostrarDemanda(demanda) {
   const responsavel = demanda.responsavel ? demanda.responsavel.nome : 'Sem responsável';
 
@@ -75,6 +78,7 @@ function iniciais(nome) {
   return (primeira + ultima).toUpperCase();
 }
 
+// Lista os comentários com autor e data
 function mostrarComentarios(comentarios) {
   const lista = document.getElementById('lista-comentarios');
   document.getElementById('titulo-comentarios').textContent = `Comentários (${comentarios.length})`;
@@ -93,6 +97,7 @@ function mostrarComentarios(comentarios) {
   `).join('');
 }
 
+// Envia o comentário novo e recarrega a demanda
 async function enviarComentario() {
   limparMensagem();
 
@@ -119,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('botao-comentar').addEventListener('click', enviarComentario);
 });
 
+// Transforma uma linha do histórico em frase ("Fulano alterou...")
 function frasePorHistorico(h) {
   const quem = `<strong>${escaparHtml(h.usuario.nome)}</strong>`;
   const antes = escaparHtml(h.valorAnterior);
@@ -158,6 +164,7 @@ function mostrarHistorico(historico) {
   `).join('');
 }
 
+// Para onde cada status pode ir (fluxo do escopo)
 const PROXIMOS_STATUS = {
   ABERTA: [{ codigo: 'EM_ANDAMENTO', texto: 'Iniciar' }],
   EM_ANDAMENTO: [{ codigo: 'EM_REVISAO', texto: 'Enviar para revisão' }],
@@ -167,6 +174,7 @@ const PROXIMOS_STATUS = {
   ]
 };
 
+// Filtra os botões pelo perfil: Membro só avança as demandas dele
 function botoesPermitidos(demanda, usuario) {
   const perfil = usuario ? usuario.perfil : null;
   let botoes = [...(PROXIMOS_STATUS[demanda.status] || [])];
@@ -207,6 +215,7 @@ function mostrarBotoesStatus(demanda) {
   });
 }
 
+// Pede confirmação antes de cancelar e envia o novo status
 async function mudarStatus(id, botao) {
   limparMensagem();
 

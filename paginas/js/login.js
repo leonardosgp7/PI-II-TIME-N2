@@ -13,6 +13,7 @@ const btnSpinner = document.getElementById('btnSpinner');
 
 const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// Mostra a mensagem de erro em cima do formulário
 function mostrarAlerta(mensagem) {
     esconderAlerta();
 
@@ -37,6 +38,7 @@ function esconderAlerta() {
 }
 
 
+// Confere se o e-mail foi preenchido e tem formato válido
 function validarEmail() {
     const valor = campoEmail.value.trim();
 
@@ -56,6 +58,7 @@ function validarEmail() {
     return true;
 }
 
+// Confere a senha antes de enviar
 function validarSenha() {
     if (campoSenha.value.trim() === '') {
         campoSenha.classList.add('is-invalid');
@@ -66,12 +69,14 @@ function validarSenha() {
     return true;
 }
 
+// Desativa o botão enquanto espera a resposta da API
 function botaoCarregando(carregando) {
     btnLogin.disabled = carregando;
     btnSpinner.classList.toggle('d-none', !carregando);
     btnTexto.textContent = carregando ? 'Entrando...' : 'Login';
 }
 
+// Ao enviar: valida os campos e, se estiver tudo certo, faz o login
 form.addEventListener('submit', function (event) {
     campoEmail.value = campoEmail.value.trim();
 
@@ -91,6 +96,7 @@ form.addEventListener('submit', function (event) {
     fazerLogin(campoEmail.value, campoSenha.value);
 });
 
+// Chama /auth/login, salva a sessão e vai para o dashboard
 async function fazerLogin(email, senha) {
     try {
         const resposta = await api.post('/auth/login', { email: email, senha: senha });
@@ -117,6 +123,7 @@ campoSenha.addEventListener('input', function () {
     esconderAlerta();
 });
 
+// Ao voltar pela seta do navegador, libera o botão de novo
 window.addEventListener('pageshow', function () {
     botaoCarregando(false);
 });
