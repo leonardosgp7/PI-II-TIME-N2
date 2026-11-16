@@ -2,12 +2,14 @@
 Autor: Leonardo Setti Garcia Peres
 RA: 26029250
 */
+// Tela de administração: lista, cadastra e edita usuários e os projetos de cada um.
 let usuarios = [];
 let projetos = [];
 let modalUsuario;
 
 document.addEventListener('DOMContentLoaded', iniciarAdministracao);
 
+// Só o Administrador fica na página; os outros voltam ao dashboard
 async function iniciarAdministracao() {
   const logado = obterUsuarioLogado();
   if (logado && logado.perfil !== 'ADMINISTRADOR') {
@@ -37,6 +39,7 @@ async function iniciarAdministracao() {
   await carregarDados();
 }
 
+// Busca usuários e projetos na API e atualiza a tela
 async function carregarDados() {
   try {
     [usuarios, projetos] = await Promise.all([api.get('/usuarios'), api.get('/projetos')]);
@@ -57,6 +60,7 @@ function etiquetaPerfil(perfil) {
 }
 
 
+// Tabela de usuários com perfil, situação e botão de editar
 function mostrarUsuarios() {
   document.getElementById('contadorUsuarios').textContent = `${usuarios.length} usuário(s) cadastrado(s).`;
 
@@ -88,6 +92,7 @@ function mostrarUsuarios() {
 }
 
 
+// Abre o formulário vazio (novo usuário) ou preenchido (edição)
 function abrirModal(idUsuario) {
   const editando = idUsuario !== null;
   const usuario = editando ? usuarios.find((u) => u.id === idUsuario) : null;
@@ -111,6 +116,7 @@ function abrirModal(idUsuario) {
   modalUsuario.show();
 }
 
+// Envia POST (novo) ou PUT (edição) para /usuarios
 async function salvarUsuario(evento) {
   evento.preventDefault();
 
@@ -147,6 +153,7 @@ async function salvarUsuario(evento) {
   }
 }
 
+// A senha só é obrigatória no cadastro; na edição é opcional
 function validarUsuario(nome, email, senha, editando) {
   if (!nome) return 'Informe o nome do usuário.';
   if (!/^\S+@\S+\.\S+$/.test(email)) return 'Informe um e-mail válido.';
@@ -168,6 +175,7 @@ function projetoSelecionado() {
   return Number(document.getElementById('selecaoProjeto').value);
 }
 
+// Mostra o líder, os membros e quem ainda pode entrar no projeto escolhido
 function mostrarEquipe() {
   const idProjeto = projetoSelecionado();
   const membros = usuarios.filter((u) => u.projetos.includes(idProjeto));
@@ -197,6 +205,7 @@ function mostrarEquipe() {
     : '<p class="text-secondary mb-0">Nenhum membro neste projeto.</p>';
 }
 
+// Salva a nova lista de projetos do usuário e recarrega a tela
 async function alterarProjetosDoUsuario(idUsuario, novosProjetos) {
   limparMensagem();
   try {
@@ -207,12 +216,14 @@ async function alterarProjetosDoUsuario(idUsuario, novosProjetos) {
   }
 }
 
+// Vincula o usuário escolhido ao projeto selecionado
 function adicionarMembro() {
   const idUsuario = Number(document.getElementById('selecaoUsuario').value);
   const usuario = usuarios.find((u) => u.id === idUsuario);
   if (usuario) alterarProjetosDoUsuario(idUsuario, [...usuario.projetos, projetoSelecionado()]);
 }
 
+// Tira o usuário do projeto selecionado
 function removerMembro(idUsuario) {
   const usuario = usuarios.find((u) => u.id === idUsuario);
   if (usuario) alterarProjetosDoUsuario(idUsuario, usuario.projetos.filter((p) => p !== projetoSelecionado()));

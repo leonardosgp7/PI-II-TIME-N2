@@ -2,6 +2,7 @@
 Autor: Vittor Maia Hagge
 RA: 26025923
 */
+// Valida e envia o formulário de nova demanda; erro de feriado aparece no campo de prazo.
 const formulario = document.querySelector("#formulario");
 
 const campoTitulo = document.querySelector("#titulo");
@@ -40,11 +41,13 @@ const mensagensDeErro = [
     erroData
 ];
 
+// Marca o campo em vermelho e mostra a mensagem embaixo dele
 function mostrarErro(campo, elementoErro, mensagem) {
     campo.classList.add("is-invalid");
     elementoErro.innerText = mensagem;
 }
 
+// Tira as marcações de erro de todos os campos
 function limparErros() {
     camposComErro.forEach(function (campo) {
         campo.classList.remove("is-invalid");
@@ -55,6 +58,7 @@ function limparErros() {
     });
 }
 
+// Valida os campos e envia a demanda para a API
 formulario.addEventListener("submit", async function (event) {
     event.preventDefault();
     limparErros();
@@ -128,6 +132,7 @@ formulario.addEventListener("submit", async function (event) {
 formulario.addEventListener("reset", limparErros);
 
 
+// Preenche o select com os projetos que o usuário pode usar
 async function carregarProjetos() {
     try {
         const projetos = await api.get("/projetos");
@@ -143,6 +148,7 @@ async function carregarProjetos() {
 carregarProjetos();
 
 
+// Preenche o select de responsável (sem o Administrador)
 async function carregarUsuarios() {
     try {
         const usuarios = await api.get("/usuarios");

@@ -2,10 +2,12 @@
 Autor: Leonardo Setti Garcia Peres
 RA: 26029250
 */
+// Monta o dashboard: totais por status, prioridade e tipo, críticas em aberto e prazos próximos.
 const DIAS_ALERTA_PRAZO = 7;
 
 document.addEventListener('DOMContentLoaded', carregarDashboard);
 
+// Busca as demandas que o perfil pode ver e monta cada bloco
 async function carregarDashboard() {
   limparMensagem();
 
@@ -23,6 +25,7 @@ async function carregarDashboard() {
   }
 }
 
+// Conta quantas demandas há para cada valor de um campo (status, tipo...)
 function contarPor(demandas, campo) {
   const contagem = {};
   for (const codigo in ROTULOS[campo]) {
@@ -53,6 +56,7 @@ function criarCartaoIndicador(valor, rotulo, classeExtra = '') {
     </div>`;
 }
 
+// Cartões do topo: total e quantidade por status
 function mostrarIndicadoresStatus(demandas) {
   const contagem = contarPor(demandas, 'status');
 
@@ -64,6 +68,7 @@ function mostrarIndicadoresStatus(demandas) {
   document.getElementById('indicadoresStatus').innerHTML = html;
 }
 
+// Barras com a porcentagem por prioridade ou por tipo
 function mostrarGraficoBarras(idElemento, demandas, campo) {
   const contagem = contarPor(demandas, campo);
   const total = demandas.length;
@@ -88,6 +93,7 @@ function mostrarGraficoBarras(idElemento, demandas, campo) {
   document.getElementById(idElemento).innerHTML = html;
 }
 
+// Prazo mais próximo primeiro; sem prazo vai para o fim
 function ordenarPorPrazo(demandas) {
   return [...demandas].sort((a, b) => {
     if (!a.prazo) return 1;
@@ -96,6 +102,7 @@ function ordenarPorPrazo(demandas) {
   });
 }
 
+// Cor do prazo: vermelho se atrasado, amarelo se vence em breve
 function classePrazo(prazo) {
   const dias = diasAte(prazo);
   if (dias === null) return '';
@@ -133,11 +140,13 @@ function mostrarLista(idElemento, demandas, textoVazio) {
   elemento.innerHTML = `<ul class="list-group list-group-flush">${demandas.map(criarItemDemanda).join('')}</ul>`;
 }
 
+// Demandas críticas que ainda estão em aberto
 function mostrarListaCriticas(demandas) {
   const criticas = demandas.filter((d) => d.prioridade === 'CRITICA' && demandaEmAberto(d));
   mostrarLista('listaCriticas', ordenarPorPrazo(criticas), 'Nenhuma demanda crítica em aberto.');
 }
 
+// Demandas em aberto com prazo vencendo nos próximos dias
 function mostrarListaPrazo(demandas) {
   const proximas = demandas.filter((d) => {
     const dias = diasAte(d.prazo);

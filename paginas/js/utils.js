@@ -2,7 +2,9 @@
 Autor: Leonardo Setti Garcia Peres
 RA: 26029250
 */
+// Funções usadas em várias páginas: rótulos, datas, escape de HTML e mensagens.
 
+// Texto mostrado na tela para cada código que vem da API
 const ROTULOS = {
   status: {
     ABERTA: 'Aberta',
@@ -30,27 +32,32 @@ const ROTULOS = {
   }
 };
 
+// Em aberto = nem concluída nem cancelada
 function demandaEmAberto(demanda) {
   return demanda.status !== 'CONCLUIDA' && demanda.status !== 'CANCELADA';
 }
 
+// Evita que um texto digitado pelo usuário vire HTML na página
 function escaparHtml(texto) {
   const div = document.createElement('div');
   div.textContent = texto == null ? '' : String(texto);
   return div.innerHTML;
 }
 
+// Converte "AAAA-MM-DD" em Date sem erro de fuso horário
 function converterData(textoData) {
   if (!textoData) return null;
   const [ano, mes, dia] = textoData.slice(0, 10).split('-').map(Number);
   return new Date(ano, mes - 1, dia);
 }
 
+// Mostra a data no formato dd/mm/aaaa
 function formatarData(textoData) {
   const data = converterData(textoData);
   return data ? data.toLocaleDateString('pt-BR') : '-';
 }
 
+// Quantos dias faltam até a data (negativo = atrasada)
 function diasAte(textoData) {
   const data = converterData(textoData);
   if (!data) return null;
@@ -59,6 +66,7 @@ function diasAte(textoData) {
   return Math.round((data - hoje) / (1000 * 60 * 60 * 24));
 }
 
+// Mostra um alerta no topo da página
 function mostrarMensagem(texto, tipo = 'erro') {
   const area = document.getElementById('mensagem');
   if (!area) return;

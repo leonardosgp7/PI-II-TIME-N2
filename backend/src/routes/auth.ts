@@ -2,6 +2,7 @@
 Autor: Leonardo Setti Garcia Peres
 RA: 26029250
 */
+// POST /api/auth/login: confere e-mail e senha (bcrypt) e devolve o token JWT.
 
 import express, { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
@@ -22,6 +23,7 @@ router.post('/login', async (req: Request, res: Response) => {
 
   try {
    
+    // Busca o usuário pelo e-mail, já com o código do perfil
     const [usuarios] = await pool.query<RowDataPacket[]>(
       `SELECT u.id_usuario, u.nome, u.senha_hash, u.ativo, p.codigo AS perfil
        FROM usuario u
@@ -36,6 +38,7 @@ router.post('/login', async (req: Request, res: Response) => {
     }
     const usuario = usuarios[0];
 
+    // Compara a senha digitada com o hash salvo no banco
     const senhaCorreta = bcrypt.compareSync(senha, usuario.senha_hash);
     if (!senhaCorreta) {
       res.status(401).json({ mensagem: 'E-mail ou senha incorretos.' });
@@ -47,6 +50,7 @@ router.post('/login', async (req: Request, res: Response) => {
       return;
     }
 
+    // Gera o token com id e perfil, válido por 8 horas
     const token = jwt.sign(
       { id: usuario.id_usuario, perfil: usuario.perfil },
       process.env.JWT_SECRET ?? '',
