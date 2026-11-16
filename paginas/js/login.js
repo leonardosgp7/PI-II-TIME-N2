@@ -2,6 +2,7 @@
 Autor: Matheus Taboada Chibani Rocha
 RA: 26026115
 */
+// Valida o formulário de login, chama a API e salva a sessão.
 const form = document.getElementById('formLogin');
 const campoEmail = document.getElementById('email');
 const campoSenha = document.getElementById('password');

@@ -2,6 +2,7 @@
 Autor: Vittor Maia Hagge
 RA: 26025923
 */
+// Valida e envia o formulário de nova demanda; erro de feriado aparece no campo de prazo.
 const formulario = document.querySelector("#formulario");
 
 const campoTitulo = document.querySelector("#titulo");

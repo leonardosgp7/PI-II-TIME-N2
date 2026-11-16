@@ -2,6 +2,7 @@
 Autor: Leonardo Setti Garcia Peres
 RA: 26029250
 */
+// POST /api/auth/login: confere e-mail e senha (bcrypt) e devolve o token JWT.
 
 import express, { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';

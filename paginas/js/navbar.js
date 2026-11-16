@@ -2,6 +2,8 @@
 Autor: Leonardo Setti Garcia Peres
 RA: 26029250
 */
+// Monta a navbar dentro da <div id="navbar"> de cada página.
+// O link de Administração só aparece para o Administrador.
 const LINKS_NAVBAR = [
   { id: 'dashboard', texto: 'Dashboard', href: 'dashboard.html' },
   { id: 'demandas', texto: 'Demandas', href: 'demandas.html' },

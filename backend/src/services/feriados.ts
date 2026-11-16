@@ -2,6 +2,7 @@
 Autor: Vittor Maia Hagge
 RA: 26025923
 */
+// Consulta a BrasilAPI e devolve o feriado nacional da data, se houver.
 interface Feriado {
   date: string;
   name: string;

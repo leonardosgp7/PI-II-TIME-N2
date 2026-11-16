@@ -2,6 +2,8 @@
 Autor: Lucas Augusto Pacola Zillo
 RA: 26026539
 */
+// Carrega a demanda, mostra comentários e histórico
+// e exibe só os botões de status que o perfil pode usar.
 
 document.addEventListener('DOMContentLoaded', carregarDemanda);
 

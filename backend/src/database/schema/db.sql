@@ -1,5 +1,6 @@
 -- Autor: Leonardo Setti Garcia Peres
 -- RA: 26029250
+-- Cria as tabelas do sistema. A API roda este arquivo sozinha ao iniciar.
 
 
 CREATE DATABASE IF NOT EXISTS sistema_demandas;

@@ -2,6 +2,7 @@
 Autor: Leonardo Setti Garcia Peres
 RA: 26029250
 */
+// Dados falsos para testar o front sem a API (ver USAR_DADOS_EXEMPLO em api.js).
 
 
 const USUARIO_EXEMPLO = { id: 1, nome: 'Ana Souza', perfil: 'ADMINISTRADOR' };

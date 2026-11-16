@@ -2,6 +2,7 @@
 Autor: Leonardo Setti Garcia Peres
 RA: 26029250
 */
+// Funções usadas em várias páginas: rótulos, datas, escape de HTML e mensagens.
 
 const ROTULOS = {
   status: {

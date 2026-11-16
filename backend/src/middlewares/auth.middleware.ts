@@ -2,6 +2,8 @@
 Autor: Leonardo Setti Garcia Peres
 RA: 26029250
 */
+// Barra toda requisição sem token válido, menos as rotas públicas.
+// Guarda o id e o perfil do usuário em res.locals.usuario para as rotas.
 
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';

@@ -2,6 +2,7 @@
 Autor: Leonardo Setti Garcia Peres
 RA: 26029250
 */
+// Monta o dashboard: totais por status, prioridade e tipo, críticas em aberto e prazos próximos.
 const DIAS_ALERTA_PRAZO = 7;
 
 document.addEventListener('DOMContentLoaded', carregarDashboard);

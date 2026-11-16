@@ -2,6 +2,8 @@
 Autor: Leonardo Setti Garcia Peres
 RA: 26029250
 */
+// Guarda a sessão (token no localStorage) e faz as chamadas para a API.
+// Com USAR_DADOS_EXEMPLO = true o front usa os dados de dados-exemplo.js.
 
 const API_URL = 'http://localhost:3000/api';
 

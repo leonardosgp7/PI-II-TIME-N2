@@ -2,6 +2,7 @@
 Autor: Leonardo Setti Garcia Peres
 RA: 26029250
 */
+// Tela de administração: lista, cadastra e edita usuários e os projetos de cada um.
 let usuarios = [];
 let projetos = [];
 let modalUsuario;
