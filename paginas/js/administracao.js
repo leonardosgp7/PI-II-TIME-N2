@@ -27,6 +27,7 @@ async function iniciarAdministracao() {
   });
 
   document.getElementById('selecaoProjeto').addEventListener('change', mostrarEquipe);
+  document.getElementById('formularioProjeto').addEventListener('submit', criarProjeto);
   document.getElementById('botaoVincular').addEventListener('click', adicionarMembro);
   document.getElementById('listaMembros').addEventListener('click', (evento) => {
     const botao = evento.target.closest('[data-remover]');
@@ -211,6 +212,30 @@ async function alterarProjetosDoUsuario(idUsuario, novosProjetos) {
   try {
     await api.put(`/usuarios/${idUsuario}`, { projetos: novosProjetos });
     await carregarDados();
+  } catch (erro) {
+    mostrarMensagem(erro.message);
+  }
+}
+
+// Cria o projeto e já deixa ele selecionado para montar a equipe
+async function criarProjeto(evento) {
+  evento.preventDefault();
+  limparMensagem();
+
+  const campo = document.getElementById('campoNomeProjeto');
+  const nome = campo.value.trim();
+  if (!nome) {
+    mostrarMensagem('Informe o nome do projeto.');
+    return;
+  }
+
+  try {
+    const novo = await api.post('/projetos', { nome });
+    campo.value = '';
+    await carregarDados();
+    document.getElementById('selecaoProjeto').value = novo.id;
+    mostrarEquipe();
+    mostrarMensagem('Projeto criado.', 'sucesso');
   } catch (erro) {
     mostrarMensagem(erro.message);
   }

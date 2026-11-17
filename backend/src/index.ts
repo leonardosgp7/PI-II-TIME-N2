@@ -10,6 +10,7 @@ import { inicializarDatabase, pool } from './database/database';
 import demandaRoutes from './routes/demanda';
 import usersRoutes from './routes/users';
 import projetosRoutes from './routes/projetos';
+import cadastroProjetosRoutes from './routes/cadastroProjetos';
 import authRoutes from './routes/auth';
 import { authMiddleware } from './middlewares/auth.middleware';
 import { buscarFeriado } from './services/feriados';
@@ -27,6 +28,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/demandas', demandaRoutes);
 app.use('/api/usuarios', usersRoutes);
 app.use('/api/projetos', projetosRoutes);
+app.use('/api/projetos', cadastroProjetosRoutes);
 
 app.get('/api/saude', (req: Request, res: Response) => {
   res.json({ status: 'ok' });
