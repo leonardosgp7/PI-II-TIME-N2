@@ -23,8 +23,8 @@ const TRANSICOES: Record<string, string[]> = {
     CANCELADA: [],
 };
 
-// Membro só avança até "Em revisão"
-const MEMBRO_PODE = ["EM_ANDAMENTO", "EM_REVISAO"];
+// Membro só faz Aberta -> Em andamento e Em andamento -> Em revisão
+const MEMBRO_PODE: Record<string, string> = { ABERTA: "EM_ANDAMENTO", EM_ANDAMENTO: "EM_REVISAO" };
 
 // Busca uma demanda com todos os dados necessários
 async function buscarDemanda(id: number) {
@@ -106,8 +106,8 @@ router.put("/:id/status", async (req: Request, res: Response) => {
             if (demanda.fk_usuario_responsavel !== u.id) {
                 return res.status(403).json({ mensagem: "Membro só altera as próprias demandas." });
             }
-            if (!MEMBRO_PODE.includes(novoCodigo)) {
-                return res.status(403).json({ mensagem: "Membro só pode avançar até Em revisão." });
+            if (MEMBRO_PODE[demanda.status_codigo] !== novoCodigo) {
+                return res.status(403).json({ mensagem: "Membro só pode passar de Aberta para Em andamento e de Em andamento para Em revisão." });
             }
         }
 
