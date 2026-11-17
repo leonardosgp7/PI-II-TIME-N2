@@ -8,8 +8,11 @@ import 'dotenv/config';
 import cors from 'cors';
 import { inicializarDatabase, pool } from './database/database';
 import demandaRoutes from './routes/demanda';
+import demandaDetalheRoutes from './routes/demandaDetalhe';
+import demandaStatusRoutes from './routes/demandaStatus';
 import usersRoutes from './routes/users';
 import projetosRoutes from './routes/projetos';
+import cadastroProjetosRoutes from './routes/cadastroProjetos';
 import authRoutes from './routes/auth';
 import { authMiddleware } from './middlewares/auth.middleware';
 import { buscarFeriado } from './services/feriados';
@@ -25,8 +28,11 @@ app.use(authMiddleware)
 
 app.use('/api/auth', authRoutes);
 app.use('/api/demandas', demandaRoutes);
+app.use('/api/demandas', demandaDetalheRoutes);
+app.use('/api/demandas', demandaStatusRoutes);
 app.use('/api/usuarios', usersRoutes);
 app.use('/api/projetos', projetosRoutes);
+app.use('/api/projetos', cadastroProjetosRoutes);
 
 app.get('/api/saude', (req: Request, res: Response) => {
   res.json({ status: 'ok' });

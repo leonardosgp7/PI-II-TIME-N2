@@ -151,7 +151,7 @@ async function salvarDemanda(evento) {
     titulo: titulo,
     descricao: descricao,
     prioridade: prioridade,
-    responsavel: responsavel === '' ? null : Number(responsavel),
+    responsavelId: responsavel === '' ? null : Number(responsavel),
     prazo: prazo === '' ? null : prazo
   };
 

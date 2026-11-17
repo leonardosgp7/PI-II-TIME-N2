@@ -157,6 +157,7 @@ Todas começam com `/api` e, menos o login, exigem o token no cabeçalho `Author
 | PUT | `/demandas/:id/status` | Troca o status |
 | POST | `/demandas/:id/comentarios` | Adiciona um comentário |
 | GET | `/projetos` | Lista os projetos do usuário |
+| POST | `/projetos` | Cadastra um projeto (só Administrador) |
 | GET | `/usuarios` | Lista os usuários |
 | POST | `/usuarios` | Cadastra um usuário (administração) |
 | PUT | `/usuarios/:id` | Edita um usuário e seus projetos (administração) |
@@ -174,7 +175,7 @@ PI-II-TIME-N2/
 │       ├── index.ts              inicia a API
 │       ├── database/             conexão e scripts (schema/db.sql e schema/seed.sql)
 │       ├── middlewares/          verificação do token
-│       ├── routes/               auth, demanda, projetos e users
+│       ├── routes/               auth, demanda, demandaDetalhe, demandaStatus, projetos, cadastroProjetos e users
 │       └── services/             consulta de feriados
 ├── paginas/                      telas do sistema (HTML)
 │   ├── css/
@@ -190,12 +191,11 @@ PI-II-TIME-N2/
 - **Nova demanda:** formulário de cadastro.
 - **Detalhe da demanda:** dados completos, comentários, histórico e botões para avançar o status.
 - **Editar demanda:** altera os dados da demanda.
-- **Administração:** cadastro e edição de usuários e vínculo com projetos (só para o Administrador).
+- **Administração:** cadastro e edição de usuários, cadastro de projetos e montagem da equipe de cada projeto (só para o Administrador).
 
 ## Observações e limitações
 
 - A senha dos usuários de teste é simples de propósito, só para facilitar a apresentação. Em um sistema de verdade não seria assim.
 - O `JWT_SECRET` do `.env.example` é só um exemplo e deve ser trocado fora de testes. O token vale por 8 horas.
-- O cadastro de projetos novos não tem tela. Eles são inseridos direto no banco (o escopo permite isso).
 - Sem internet não dá para salvar um prazo, porque a consulta de feriados falha.
 - O banco usado é o MySQL, que é um dos permitidos pelo escopo.
