@@ -182,10 +182,12 @@ function botoesPermitidos(demanda, usuario) {
   if (perfil === 'MEMBRO') {
     const ehResponsavel = demanda.responsavel && demanda.responsavel.id === usuario.id;
     if (!ehResponsavel) return [];
-    botoes = botoes.filter((b) => b.codigo === 'EM_ANDAMENTO' || b.codigo === 'EM_REVISAO');
+    botoes = botoes.filter((b) =>
+      (demanda.status === 'ABERTA' && b.codigo === 'EM_ANDAMENTO') ||
+      (demanda.status === 'EM_ANDAMENTO' && b.codigo === 'EM_REVISAO'));
   }
 
-  if (demandaEmAberto(demanda)) {
+  if (demandaEmAberto(demanda) && perfil !== 'MEMBRO') {
     botoes.push({ codigo: 'CANCELADA', texto: 'Cancelar', perigo: true });
   }
 
