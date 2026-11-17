@@ -204,8 +204,13 @@ router.put("/:id", async (req: Request, res: Response) => {
             }
         }
 
+        // prazo vazio: remove o prazo da demanda
+        if ((prazo === null || prazo === "") && demanda.prazo !== null) {
+            mudancas.push({ campo: "prazo", coluna: "prazo_finalizacao", valor: null, anterior: demanda.prazo, novo: null });
+        }
+
         // prazo (com checagem de feriado)
-        if (prazo !== undefined) {
+        if (prazo !== undefined && prazo !== null && prazo !== "") {
             if (!/^\d{4}-\d{2}-\d{2}$/.test(prazo) || isNaN(Date.parse(prazo))) {
                 return res.status(400).json({ mensagem: "Data inválida. Use AAAA-MM-DD.", campo: "prazo" });
             }

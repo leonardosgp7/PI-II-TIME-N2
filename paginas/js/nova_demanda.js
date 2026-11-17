@@ -98,11 +98,6 @@ formulario.addEventListener("submit", async function (event) {
         formValido = false;
     }
 
-    if (data === "") {
-        mostrarErro(campoData, erroData, "Digite uma data.");
-        formValido = false;
-    }
-
     if (!formValido) {
         return;
     }
@@ -138,7 +133,7 @@ async function carregarProjetos() {
         const projetos = await api.get("/projetos");
 
         projetos.forEach(function (projeto) {
-            campoProjeto.innerHTML += '<option value="' + projeto.id + '">' + projeto.nome + '</option>';
+            campoProjeto.innerHTML += '<option value="' + projeto.id + '">' + escaparHtml(projeto.nome) + '</option>';
         });
     } catch (erro) {
         mostrarErro(campoProjeto, erroProjeto, "Não foi possível carregar os projetos.");
@@ -155,7 +150,7 @@ async function carregarUsuarios() {
 
         usuarios.forEach(function (usuario) {
             if (usuario.ativo && usuario.perfil !== "ADMINISTRADOR") {
-                campoResponsavel.innerHTML += '<option value="' + usuario.id + '">' + usuario.nome + '</option>';
+                campoResponsavel.innerHTML += '<option value="' + usuario.id + '">' + escaparHtml(usuario.nome) + '</option>';
             }
         });
     } catch (erro) {

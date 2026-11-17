@@ -175,7 +175,7 @@ PI-II-TIME-N2/
 │       ├── index.ts              inicia a API
 │       ├── database/             conexão e scripts (schema/db.sql e schema/seed.sql)
 │       ├── middlewares/          verificação do token
-│       ├── routes/               uma rota por arquivo (auth, demandas, projetos, usuários)
+│       ├── routes/               auth, demanda, demandaDetalhe, demandaStatus, projetos, cadastroProjetos e users
 │       └── services/             consulta de feriados
 ├── paginas/                      telas do sistema (HTML)
 │   ├── css/

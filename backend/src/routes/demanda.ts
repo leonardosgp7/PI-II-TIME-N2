@@ -81,7 +81,8 @@ router.get("/", async (req: Request, res: Response) => {
 
 router.post("/", async (req: Request, res: Response) => {
     const logado = res.locals.usuario;
-    const { titulo, descricao, projetoId, responsavelId, tipo, prioridade, prazo } = req.body;
+    const { descricao, projetoId, responsavelId, tipo, prioridade, prazo } = req.body;
+    const titulo = String(req.body.titulo ?? "").trim();
 
     if (logado.perfil === "MEMBRO") {
         return res.status(403).json({ mensagem: "Membro da equipe não pode cadastrar demandas." });
@@ -101,6 +102,10 @@ router.post("/", async (req: Request, res: Response) => {
         if (vinculos.length === 0) {
             return res.status(403).json({ mensagem: "Você não participa deste projeto." });
         }
+        }
+
+        if (prazo && (!/^\d{4}-\d{2}-\d{2}$/.test(prazo) || isNaN(Date.parse(prazo)))) {
+            return res.status(400).json({ mensagem: "Data do prazo inválida." });
         }
 
         if (prazo) {
@@ -124,9 +129,19 @@ router.post("/", async (req: Request, res: Response) => {
             return res.status(400).json({ mensagem: "Prioridade inválida." });
         }
 
+        // o responsável precisa ser um usuário ativo que participa do projeto
         let responsavel = null;
         if (responsavelId) {
             responsavel = Number(responsavelId);
+            const [participantes] = await pool.query<RowDataPacket[]>(
+                `SELECT 1 FROM usuario u
+                   JOIN participa pa ON pa.fk_usuario_id_usuario = u.id_usuario
+                  WHERE u.id_usuario = ? AND pa.fk_projeto_id_projeto = ? AND u.ativo = TRUE`,
+                [responsavel, projetoId]
+            );
+            if (participantes.length === 0) {
+                return res.status(400).json({ mensagem: "Responsável inválido para este projeto." });
+            }
         }
 
         const [status] = await pool.query<RowDataPacket[]>(
@@ -158,7 +173,7 @@ router.post("/", async (req: Request, res: Response) => {
 
         await pool.query(
             `INSERT INTO historico (tipo_alteracao, valor_anterior, valor_novo, fk_demanda_id_demanda, fk_usuario_id_usuario)
-             VALUES ('CRIACAO', NULL, 'ABERTA', ?, ?)`,
+             VALUES ('CRIACAO', NULL, 'Aberta', ?, ?)`,
             [idNovaDemanda, logado.id]
         );
 
