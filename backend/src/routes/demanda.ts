@@ -93,15 +93,14 @@ router.post("/", async (req: Request, res: Response) => {
     }
 
     try {
-        
         if (logado.perfil !== "ADMINISTRADOR") {
             const [vinculos] = await pool.query<RowDataPacket[]>(
                 "SELECT * FROM participa WHERE fk_projeto_id_projeto = ? AND fk_usuario_id_usuario = ?",
                 [projetoId, logado.id]
-        );
-        if (vinculos.length === 0) {
-            return res.status(403).json({ mensagem: "Você não participa deste projeto." });
-        }
+            );
+            if (vinculos.length === 0) {
+                return res.status(403).json({ mensagem: "Você não participa deste projeto." });
+            }
         }
 
         if (prazo && (!/^\d{4}-\d{2}-\d{2}$/.test(prazo) || isNaN(Date.parse(prazo)))) {
@@ -109,6 +108,15 @@ router.post("/", async (req: Request, res: Response) => {
         }
 
         if (prazo) {
+            // data de hoje no fuso de Brasília, no formato YYYY-MM-DD
+            const hoje = new Intl.DateTimeFormat("en-CA", {
+                timeZone: "America/Sao_Paulo",
+            }).format(new Date());
+
+            if (prazo < hoje) {
+                return res.status(400).json({ mensagem: "O prazo não pode ser anterior à data atual." });
+            }
+
             const feriado = await buscarFeriado(prazo);
             if (feriado) {
                 return res.status(400).json({ mensagem: "O prazo cai em um feriado: " + feriado.name + ". Escolha outra data." });

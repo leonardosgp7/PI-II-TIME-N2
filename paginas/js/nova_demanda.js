@@ -1,8 +1,8 @@
-/* 
+/*
 Autor: Vittor Maia Hagge
 RA: 26025923
 */
-// Valida e envia o formulário de nova demanda; erro de feriado aparece no campo de prazo.
+// Valida e envia o formulário de nova demanda; erros de prazo (data passada, feriado) aparecem no campo de prazo.
 const formulario = document.querySelector("#formulario");
 
 const campoTitulo = document.querySelector("#titulo");
@@ -40,6 +40,16 @@ const mensagensDeErro = [
     erroPrioridade,
     erroData
 ];
+
+// Data de hoje no fuso de Brasília, no formato YYYY-MM-DD (o mesmo do input date)
+function dataDeHoje() {
+    return new Intl.DateTimeFormat("en-CA", {
+        timeZone: "America/Sao_Paulo"
+    }).format(new Date());
+}
+
+// Impede escolher dias passados no calendário do campo de prazo
+campoData.min = dataDeHoje();
 
 // Marca o campo em vermelho e mostra a mensagem embaixo dele
 function mostrarErro(campo, elementoErro, mensagem) {
@@ -98,6 +108,12 @@ formulario.addEventListener("submit", async function (event) {
         formValido = false;
     }
 
+    // Prazo é opcional, mas se preenchido não pode ser antes de hoje
+    if (data !== "" && data < dataDeHoje()) {
+        mostrarErro(campoData, erroData, "O prazo não pode ser anterior à data atual.");
+        formValido = false;
+    }
+
     if (!formValido) {
         return;
     }
@@ -116,7 +132,8 @@ formulario.addEventListener("submit", async function (event) {
         alert("Demanda cadastrada com sucesso!");
         formulario.reset();
     } catch (erro) {
-        if (erro.message.includes("feriado")) {
+        // Erros de prazo vindos da API (data inválida, passada ou feriado) vão para o campo de data
+        if (erro.message.toLowerCase().includes("prazo")) {
             mostrarErro(campoData, erroData, erro.message);
         } else {
             alert(erro.message);
