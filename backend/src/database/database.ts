@@ -8,6 +8,10 @@ import * as path from 'path';
 import { createConnection, createPool, type Pool, type PoolOptions } from 'mysql2/promise';
 import 'dotenv/config';
 
+// Horário de Brasília. O Brasil não tem horário de verão desde 2019, então o
+// deslocamento fixo de -03:00 vale o ano todo e não depende das tabelas de fuso do MySQL.
+const FUSO_HORARIO = '-03:00';
+
 function getDbConfig() {
   return {
     DB_HOST: process.env.DB_HOST ?? 'localhost',
@@ -32,7 +36,14 @@ export function criarDatabasePool(): Pool {
     dateStrings: true,
   };
 
-  return createPool(config);
+  const novoPool = createPool(config);
+
+  // Toda conexão nova usa o horário de Brasília em NOW(), CURDATE() e CURRENT_TIMESTAMP
+  novoPool.on('connection', (conexao) => {
+    conexao.query(`SET time_zone = '${FUSO_HORARIO}'`);
+  });
+
+  return novoPool;
 }
 
 export const pool = criarDatabasePool();
@@ -48,6 +59,8 @@ export async function inicializarDatabase(): Promise<void> {
   });
 
   try {
+    // O seed usa NOW() e CURDATE(), então também precisa do horário de Brasília
+    await bootstrapConnection.query(`SET time_zone = '${FUSO_HORARIO}'`);
     await bootstrapConnection.query(`CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;`);
 
     const schemaPath = path.resolve(process.cwd(), 'src', 'database', 'schema', 'db.sql');
